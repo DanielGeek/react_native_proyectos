@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableWithoutFeedback } from 'react-native';
 
 // const {width, height } = Dimensions.get('window')
 
@@ -18,15 +18,28 @@ export default function App() {
         defaultValue={text}
        />
       <StatusBar style="auto" />
-      <Button onPress={() => {
+      <TouchableWithoutFeedback
+        style={styles.TouchableOpacity}
+        onPress={() => {
         setSubmit(text)
         alert('Texto enviado con exito')
-      }} title="Aceptar" />
+      }}>
+        <View style={styles.view}><Text>Aceptar</Text></View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  TouchableOpacity: {
+    backgroundColor: '#EEE',
+  },
+  view: {
+    height: 40,
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   input: {
     height: 40,
     borderBottomColor: '#ccc',
