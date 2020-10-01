@@ -27,25 +27,21 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 24,
-    height: 100,
-    width: 100,
   },
   red: {
-    flex: 1,
     backgroundColor: 'red',
   },
   green: {
-    flex: 2,
     backgroundColor: 'green',
   },
   blue: {
-    flex: 3,
     backgroundColor: 'blue',
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'baseline',
+    justifyContent: 'space-evenly',
   },
 });
