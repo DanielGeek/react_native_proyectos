@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Button } from 'react-native';
 
 // const {width, height } = Dimensions.get('window')
 
 export default function App() {
   const [text, setText] = useState('texto default')
+  const [submit, setSubmit] = useState('')
 
   return (
     <View style={styles.container}>
-      <Text>Texto: {text}</Text>
+      <Text>Texto: {submit}</Text>
       <TextInput 
         style={styles.input}
         placeholder='Escribe'
@@ -17,6 +18,10 @@ export default function App() {
         defaultValue={text}
        />
       <StatusBar style="auto" />
+      <Button onPress={() => {
+        setSubmit(text)
+        alert('Texto enviado con exito')
+      }} title="Aceptar" />
     </View>
   );
 }
