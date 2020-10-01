@@ -8,7 +8,7 @@ const Texto = (props) => {
     setTexto('Chao mundo!')
   }
   return (
-    <Text onPress={actualizaTexto}>{texto}</Text>
+    <Text style={{ fontSize: 24 }} onPress={actualizaTexto}>{texto}</Text>
   )
 }
 
