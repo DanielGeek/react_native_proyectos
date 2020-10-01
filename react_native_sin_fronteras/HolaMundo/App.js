@@ -3,17 +3,22 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const Texto = (props) => {
-  const { texto } = props;
+  const { children } = props;
   return (
-    <Text>{texto}</Text>
+    <Text>{children}</Text>
   )
 }
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Texto texto={'Hola mundo'} />
-      <Texto texto={'chao mundo'} />
+      <Texto>
+        Hola Mundo
+        <Texto>
+          Chao Mundo
+        </Texto>
+      </Texto>
+
       <StatusBar style="auto" />
     </View>
   );
