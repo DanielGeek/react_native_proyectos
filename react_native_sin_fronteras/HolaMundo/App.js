@@ -1,24 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const Texto = (props) => {
-  const { children } = props;
+  const [texto, setTexto] = useState("Hola mundo!")
+  const actualizaTexto = () => {
+    setTexto('Chao mundo!')
+  }
   return (
-    <Text>{children}</Text>
+    <Text onPress={actualizaTexto}>{texto}</Text>
   )
 }
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Texto>
-        Hola Mundo
-        <Texto>
-          Chao Mundo
-        </Texto>
-      </Texto>
-
+      <Texto />
       <StatusBar style="auto" />
     </View>
   );
