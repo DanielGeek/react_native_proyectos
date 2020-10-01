@@ -8,7 +8,7 @@ const Texto = (props) => {
     setTexto('Chao mundo!')
   }
   return (
-    <Text style={{ fontSize: 24 }} onPress={actualizaTexto}>{texto}</Text>
+    <Text style={styles.text} onPress={actualizaTexto}>{texto}</Text>
   )
 }
 
@@ -22,6 +22,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  text: {
+    color: 'red',
+    fontSize: 24,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
