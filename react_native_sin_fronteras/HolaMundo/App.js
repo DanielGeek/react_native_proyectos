@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableWithoutFeedback, ScrollView } from 'react-native';
 
 // const {width, height } = Dimensions.get('window')
 
@@ -10,22 +10,88 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ScrollView style={styles.scrollView}>
       <Text>Texto: {submit}</Text>
-      <TextInput 
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      <Text>Texto: {submit}</Text>
+      
+      <TextInput
         style={styles.input}
         placeholder='Escribe'
-        onChangeText={ t => setText(t)}
+        onChangeText={t => setText(t)}
         defaultValue={text}
-       />
+      />
       <StatusBar style="auto" />
       <TouchableWithoutFeedback
         style={styles.TouchableOpacity}
         onPress={() => {
-        setSubmit(text)
-        alert('Texto enviado con exito')
-      }}>
+          setSubmit(text)
+          alert('Texto enviado con exito')
+        }}>
         <View style={styles.view}><Text>Aceptar</Text></View>
       </TouchableWithoutFeedback>
+      </ScrollView>
     </View>
   );
 }
@@ -52,4 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  scrollView: {
+    width: Dimensions.get('window').width,
+  }
 });
