@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Cita } from './componentes/Cita';
+import { Formulario } from './componentes/Formulario';
 
 const App = () => {
 
@@ -28,6 +29,9 @@ const App = () => {
     <>
       <View style={styles.contenedor}>
         <Text style={styles.titulo}>Administrador de Citas</Text>
+
+        <Formulario />
+
         <Text style={styles.titulo}>{citas.length > 0 ? 'Administra tus Citas' : 'No hay citas, agrega una'}</Text>
 
         <FlatList
