@@ -1,24 +1,41 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const Cita = ({ item }) => {
     return (
-        (
+        <View style={styles.cita}>
             <View>
-                <View>
-                    <Text>Paciente: </Text>
-                    <Text>{item.paciente}</Text>
-                </View>
-                <View>
-                    <Text>Propietario: </Text>
-                    <Text>{item.propietario}</Text>
-                </View>
-                <View>
-                    <Text>Síntomas: </Text>
-                    <Text>{item.sintomas}</Text>
-                </View>
+                <Text style={styles.label}>Paciente: </Text>
+                <Text style={styles.text}>{item.paciente}</Text>
             </View>
-        )
+            <View>
+                <Text style={styles.label}>Propietario: </Text>
+                <Text style={styles.text}>{item.propietario}</Text>
+            </View>
+            <View>
+                <Text style={styles.label}>Síntomas: </Text>
+                <Text style={styles.text}>{item.sintomas}</Text>
+            </View>
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    cita: {
+        backgroundColor: '#FFF',
+        borderBottomColor: '#e1e1e1',
+        borderStyle: 'solid',
+        borderBottomWidth: 1,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+    },
+    label: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginTop: 20,
+    },
+    text: {
+        fontSize: 18,
+    },
+});
