@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Cita } from './componentes/Cita';
 
 const App = () => {
 
@@ -22,18 +23,9 @@ const App = () => {
 
         <FlatList
           data={citas}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.paciente}</Text>
-            </View>
-          )}
+          renderItem={({ item }) => <Cita item={item} />}
           keyExtractor={cita => cita.id}
         />
-        {/* {citas.map(cita => (
-          <View>
-            <Text key={cita.id}>{cita.paciente}</Text>
-          </View>
-        ))} */}
       </View>
     </>
   );
