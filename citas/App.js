@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {
+  FlatList,
   StyleSheet,
   Text,
   View,
@@ -19,11 +20,20 @@ const App = () => {
       <View style={styles.contenedor}>
         <Text style={styles.titulo}>Administrador de Citas</Text>
 
-        {citas.map(cita => (
+        <FlatList
+          data={citas}
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.paciente}</Text>
+            </View>
+          )}
+          keyExtractor={cita => cita.id}
+        />
+        {/* {citas.map(cita => (
           <View>
             <Text key={cita.id}>{cita.paciente}</Text>
           </View>
-        ))}
+        ))} */}
       </View>
     </>
   );
