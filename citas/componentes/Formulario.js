@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getDateString } from './helpers/getFechaEs';
+import shortid from 'shortid';
 
-export const Formulario = () => {
+export const Formulario = ({ citas, setCitas, guardarMostrarForm }) => {
     const [paciente, guardarPaciente] = useState('');
     const [propietario, guardarPropietario] = useState('');
     const [telefono, guardarTelefono] = useState('');
@@ -51,6 +52,20 @@ export const Formulario = () => {
             mostrarAlerta();
             return;
         }
+
+        // Crear una nueva cita
+        const cita = { paciente, propietario, telefono, fecha, hora, sintomas };
+        cita.id = shortid.generate();
+        // console.log(cita);
+
+        // Agregar al state
+        const citaNueva = [...citas, cita];
+        setCitas(citaNueva);
+
+        // Ocultar el formulario
+        guardarMostrarForm(false);
+
+        // Resetear el formulario
     };
 
     // Muestra la alerta si falla la validación
