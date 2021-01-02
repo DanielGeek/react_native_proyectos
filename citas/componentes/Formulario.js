@@ -2,8 +2,13 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { getDateString } from './helpers/getFechaEs';
 
 export const Formulario = () => {
+
+    const [fecha, guardarFecha] = useState('');
+    const [hora, guardarHora] = useState('');
+
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
@@ -16,7 +21,7 @@ export const Formulario = () => {
     };
 
     const confirmarFecha = (date) => {
-        console.warn('A date has been picked: ', date);
+        guardarFecha(getDateString(date));
         hideDatePicker();
     };
 
@@ -60,32 +65,36 @@ export const Formulario = () => {
                     />
                 </View>
                 <View>
+                    <Text style={styles.label}>Fecha:</Text>
                     <Button title="Seleccionar Fecha" onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="date"
                         onConfirm={confirmarFecha}
                         onCancel={hideDatePicker}
-                        locale="es-ES"
+                        locale="es-CH"
                         headerTextIOS="Elige la Fecha"
                         cancelTextIOS="Cancelar"
                         confirmTextIOS="Confirmar"
                     />
+                    <Text>{fecha}</Text>
                 </View>
 
                 <View>
+                    <Text style={styles.label}>Hora:</Text>
                     <Button title="Seleccionar Hora" onPress={showTimePicker} />
                     <DateTimePickerModal
                         isVisible={isTimePickerVisible}
                         mode="time"
                         onConfirm={confirmarHora}
                         onCancel={hideTimePicker}
-                        locale="es-ES"
+                        locale="es-CH"
                         headerTextIOS="Elige una Hora"
                         cancelTextIOS="Cancelar"
                         confirmTextIOS="Confirmar"
                         is24Hour
                     />
+                    <Text>{hora}</Text>
                 </View>
                 <View>
                     <Text style={styles.label}>Síntomas:</Text>
