@@ -30,15 +30,18 @@ const App = () => {
       <View style={styles.contenedor}>
         <Text style={styles.titulo}>Administrador de Citas</Text>
 
-        <Formulario />
+        <View style={styles.contenido}>
+          <Formulario />
 
-        <Text style={styles.titulo}>{citas.length > 0 ? 'Administra tus Citas' : 'No hay citas, agrega una'}</Text>
+          <Text style={styles.titulo}>{citas.length > 0 ? 'Administra tus Citas' : 'No hay citas, agrega una'}</Text>
 
-        <FlatList
-          data={citas}
-          renderItem={({ item }) => <Cita item={item} eliminarPaciente={eliminarPaciente} />}
-          keyExtractor={cita => cita.id}
-        />
+          <FlatList
+            style={styles.listado}
+            data={citas}
+            renderItem={({ item }) => <Cita item={item} eliminarPaciente={eliminarPaciente} />}
+            keyExtractor={cita => cita.id}
+          />
+        </View>
       </View>
     </>
   );
@@ -56,6 +59,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  contenido: {
+    flex: 1,
+    marginHorizontal: '2.5%',
+  },
+  listado: {
+    flex: 1,
   },
 });
 

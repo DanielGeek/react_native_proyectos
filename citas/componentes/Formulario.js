@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getDateString } from './helpers/getFechaEs';
 
@@ -66,7 +66,7 @@ export const Formulario = () => {
 
     return (
         <>
-            <View style={styles.formulario}>
+            <ScrollView style={styles.formulario}>
                 <View>
                     <Text style={styles.label}>Paciente:</Text>
                     <TextInput
@@ -129,12 +129,12 @@ export const Formulario = () => {
                     />
                 </View>
 
-                <View>
+                <View style={styles.contenedorBtnSubmit}>
                     <TouchableHighlight onPress={() => crearNuevaCita()} style={styles.btnSubmit}>
                         <Text style={styles.textoSubmit}>Crear Nueva Cita </Text>
                     </TouchableHighlight>
                 </View>
-            </View>
+            </ScrollView>
         </>
     );
 };
@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         paddingVertical: 20,
         paddingHorizontal: 10,
-        marginHorizontal: '2.5%',
     },
     label: {
         fontWeight: 'bold',
@@ -157,6 +156,9 @@ const styles = StyleSheet.create({
         borderColor: '#e1e1e1',
         borderWidth: 1,
         borderStyle: 'solid',
+    },
+    contenedorBtnSubmit: {
+        marginVertical: 40,
     },
     btnSubmit: {
         padding: 10,
