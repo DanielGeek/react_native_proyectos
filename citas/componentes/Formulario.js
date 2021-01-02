@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getDateString } from './helpers/getFechaEs';
 
@@ -45,7 +45,24 @@ export const Formulario = () => {
 
     // Crear nueva cita
     const crearNuevaCita = () => {
+        // Validar
+        if (paciente.trim() === '' || propietario.trim() === '' || telefono.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '') {
+            // Falla la validación
+            mostrarAlerta();
+            return;
+        }
     };
+
+    // Muestra la alerta si falla la validación
+    const mostrarAlerta = () => {
+        Alert.alert(
+            'Error',
+            'Todos los campos son obligatorios',
+            [{
+                text: 'OK',
+            }]
+        )
+    }
 
     return (
         <>
