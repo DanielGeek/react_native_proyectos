@@ -20,7 +20,7 @@ export const Formulario = () => {
         setDatePickerVisibility(false);
     };
 
-    const confirmarFecha = (date) => {
+    const confirmarFecha = date => {
         guardarFecha(getDateString(date));
         hideDatePicker();
     };
@@ -34,8 +34,9 @@ export const Formulario = () => {
         setTimePickerVisibility(false);
     };
 
-    const confirmarHora = (date) => {
-        console.warn('A date has been picked: ', date);
+    const confirmarHora = time => {
+        const opciones = { hour: 'numeric', minute: '2-digit' };
+        guardarHora(time.toLocaleTimeString('es-CH', opciones));
         hideTimePicker();
     };
 
@@ -72,7 +73,7 @@ export const Formulario = () => {
                         mode="date"
                         onConfirm={confirmarFecha}
                         onCancel={hideDatePicker}
-                        locale="es-CH"
+                        locale="es_ES"
                         headerTextIOS="Elige la Fecha"
                         cancelTextIOS="Cancelar"
                         confirmTextIOS="Confirmar"
@@ -88,11 +89,10 @@ export const Formulario = () => {
                         mode="time"
                         onConfirm={confirmarHora}
                         onCancel={hideTimePicker}
-                        locale="es-CH"
+                        locale="es_ES"
                         headerTextIOS="Elige una Hora"
                         cancelTextIOS="Cancelar"
                         confirmTextIOS="Confirmar"
-                        is24Hour
                     />
                     <Text>{hora}</Text>
                 </View>
