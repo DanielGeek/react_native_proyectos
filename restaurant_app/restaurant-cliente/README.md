@@ -1,1 +1,1 @@
-## App para administrar ordenes de restaurantes usando react con functional components, hooks y framework css tailwind
+## App para administrar ordenes de restaurantes usando react con functional components, hooks y framework css tailwind, db firebase Cloud Firestore, Storage
