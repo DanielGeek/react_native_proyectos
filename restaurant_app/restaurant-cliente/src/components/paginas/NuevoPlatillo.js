@@ -3,12 +3,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
+import FileUploader from 'react-firebase-file-uploader';
 
 export const NuevoPlatillo = () => {
 
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);
-
+    console.log(firebase)
     // Hook para redireccionar
     const navigate = useNavigate();
 
@@ -121,13 +122,12 @@ export const NuevoPlatillo = () => {
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">Imagen</label>
-                            <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            <FileUploader
+                                accept="image/*"
                                 id="imagen"
-                                type="file"
-                                value={formik.values.imagen}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
+                                name="imagen"
+                                randomizeFilename
+                                storageRef={firebase.storage.ref("productos")}
                             />
                         </div>
 
