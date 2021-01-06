@@ -10,6 +10,20 @@ export const Platillo = ({ platillo }) => {
                 <div className="lg:flex">
                     <div className="lg:w-5/12 xl:w-3/12">
                         <img src={imagen} alt="Imagen platillo" />
+
+                        <div className="sm:flex sm:-mx-2 pl-2">
+                            <label className="block mt-5 sm:w-2/4">
+                                <span className="block text-gray-800 mb-2">Existencia</span>
+
+                                <select
+                                    className="bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={existencia}
+                                >
+                                    <option value="true">Disponible</option>
+                                    <option value="false">No Disponible</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <div className="lg:w-7/12 xl:w-9/12 pl-5">
                         <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre}</p>
