@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Platillo = ({ platillo }) => {
 
-    const { nombre, imagen } = platillo;
+    const { nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
 
     return (
         <div className="w-full px-3 mb-4">
@@ -11,12 +11,18 @@ export const Platillo = ({ platillo }) => {
                     <div className="lg:w-5/12 xl:w-3/12">
                         <img src={imagen} alt="Imagen platillo" />
                     </div>
-                    <div className="lg:w-7/12 xl:w-9/12">
-                        2
+                    <div className="lg:w-7/12 xl:w-9/12 pl-5">
+                        <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre}</p>
+                        <p className="text-gray-700 font-bold">Categoría: {''}
+                            <span className="text-gray-700 font-bold">{categoria.toUpperCase()}</span>
+                        </p>
+                        <p className="text-gray-600 mb-4">{descripcion}</p>
+                        <p className="text-gray-600 mb-4">Precio: {''}
+                            <span className="text-gray-700 font-bold"> $ {precio}</span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <h1>{platillo.nombre}</h1>
         </div>
     )
 }
