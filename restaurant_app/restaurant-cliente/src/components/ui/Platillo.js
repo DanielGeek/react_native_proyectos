@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useContext, useRef } from 'react';
+import { FirebaseContext } from '../../firebase';
 
 export const Platillo = ({ platillo }) => {
 
-    const { nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
+    // Existencia ref para acceder al valor directamente
+    const existenciaRef = useRef(platillo.existencia);
+
+    // context de firebase para cambios en la bd
+    const { firebase } = useContext(FirebaseContext);
+
+    const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
+
+    // modificar el estado del platillo en firebase
+    const actualizarDisponibilidad = () => {
+        const existencia = (existenciaRef.current.value === "true");
+
+        try {
+            firebase.db.collection('productos')
+                .doc(id)
+                .update({
+                    existencia
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="w-full px-3 mb-4">
@@ -18,6 +40,8 @@ export const Platillo = ({ platillo }) => {
                                 <select
                                     className="bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                     value={existencia}
+                                    ref={existenciaRef}
+                                    onChange={() => actualizarDisponibilidad()}
                                 >
                                     <option value="true">Disponible</option>
                                     <option value="false">No Disponible</option>
