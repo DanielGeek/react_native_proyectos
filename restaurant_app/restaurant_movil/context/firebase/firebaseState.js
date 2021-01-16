@@ -4,7 +4,7 @@ import firebase from '../../firebase';
 import FirebaseReducer from './firebaseReducer';
 import FirebaseContext from './firebaseContext';
 
-import { OBTENER_PRODUCTOS } from '../../types';
+import { OBTENER_PRODUCTOS_EXITO } from '../../types';
 
 const FirebaseState = props => {
 
@@ -20,9 +20,27 @@ const FirebaseState = props => {
 
     // Función que se ejecuta para traer los productos
     const obtenerProductos = () => {
-        dispatch({
-            type: OBTENER_PRODUCTOS
-        })
+
+        // consultar firebase
+        firebase.db
+            .collection('productos')
+            .where('existencia', '==', true) //trae solo los existentes
+            .onSnapshot(manejarSnapshot); // si ocurren cambios los muestra en tiempo real
+
+        function manejarSnapshot(snapshot) {
+            let platillos = snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            });
+
+            // Tenemos resultados de la BD y despachamos al reducer el nuevo estado
+            dispatch({
+                type: OBTENER_PRODUCTOS_EXITO,
+                payload: platillos
+            });
+        }
     }
 
     // para tener acceso a mi state de firebase y su BD en cualquier parte de la app
