@@ -1,10 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Container, Button, Text } from 'native-base';
 
 export default function NuevaOrden() {
     return (
-        <View>
-            <Text>Nueva Orden</Text>
-        </View>
+        <Container>
+            <View>
+                <Button
+                    rounded
+                    block
+                >
+                    <Text>Crear Nueva Orden</Text>
+                </Button>
+            </View>
+        </Container>
     )
 }
