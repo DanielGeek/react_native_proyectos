@@ -29,15 +29,15 @@ export default function Menu() {
             // mostrar la categoria solo 1 vez
             if (categoriaAnterior !== categoria) {
                 return (
-                    <Separator>
-                        <Text>{categoria}</Text>
+                    <Separator style={styles.separador}>
+                        <Text style={styles.separadorTexto}>{categoria}</Text>
                     </Separator>
                 )
             }
         } else {
             return (
-                <Separator>
-                    <Text>{categoria}</Text>
+                <Separator style={styles.separador}>
+                    <Text style={styles.separadorTexto}>{categoria}</Text>
                 </Separator>
             )
         }
@@ -74,5 +74,16 @@ export default function Menu() {
                 </List>
             </Content>
         </Container>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    separador: {
+        backgroundColor: '#000',
+    },
+    separadorTexto: {
+        color: '#FFDA00',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    }
+})
