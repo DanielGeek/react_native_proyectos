@@ -34,16 +34,30 @@ const DetallePlatillo = () => {
     return (
         <Container style={globalStyles.contenedor}>
             <Content style={globalStyles.contenido}>
-                <H1 style={globalStyles.titulo}>{nombre}</H1>
+                <H1 style={globalStyles.titulo}>Detalle</H1>
 
                 <Card>
                     <CardItem>
                         <Body>
                             <Image style={globalStyles.imagen} source={{ uri: imagen }} />
+
+                            <Text style={{ marginTop: 20 }}>{descripcion}</Text>
+                            <Text style={globalStyles.cantidad}>Precio: $ {precio}</Text>
                         </Body>
                     </CardItem>
                 </Card>
             </Content>
+
+            <Footer>
+                <FooterTab>
+                    <Button
+                        style={globalStyles.boton}
+                        onPress={() => navigation.navigate("FormularioPlatillo")}
+                    >
+                        <Text style={globalStyles.botonTexto}>Ordenar Platillo</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
         </Container>
     )
 }
