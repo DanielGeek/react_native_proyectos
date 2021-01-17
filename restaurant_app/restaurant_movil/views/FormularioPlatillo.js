@@ -1,10 +1,41 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import {
+    Container,
+    Content,
+    Form,
+    Icon,
+    Input,
+    Grid,
+    Col,
+    Button,
+    Text
+} from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import globalStyles from '../styles/global';
 
-export default function FormularioPlatillo() {
+import PedidosContext from '../context/pedidos/pedidosContext';
+
+const FormularioPlatillo = () => {
     return (
-        <View>
-            <Text>Formulario Platillo</Text>
-        </View>
-    )
+        <Container>
+            <Content>
+                <Form>
+                    <Text style={globalStyles.titulo}>Cantidad</Text>
+                    <Grid>
+                        <Col>
+                            <Button>
+                                <Icon name="remove" />
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Icon name="add" />
+                        </Col>
+                    </Grid>
+                </Form>
+            </Content>
+        </Container>
+    );
 }
+
+export default FormularioPlatillo;

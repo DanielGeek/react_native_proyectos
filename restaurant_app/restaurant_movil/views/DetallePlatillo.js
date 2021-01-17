@@ -12,10 +12,10 @@ import {
     Card,
     CardItem
 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 import PedidosContext from '../context/pedidos/pedidosContext';
-import { useNavigation } from '@react-navigation/native';
 
 const DetallePlatillo = () => {
 
