@@ -54,7 +54,7 @@ const App = () => {
                 name="DetallePlatillo"
                 component={DetallePlatillo}
                 options={{
-                  title: "Detalle Platillo"
+                  title: null
                 }}
               />
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Image } from 'react-native';
 import {
     Container,
@@ -15,12 +15,21 @@ import {
 import globalStyles from '../styles/global';
 
 import PedidosContext from '../context/pedidos/pedidosContext';
+import { useNavigation } from '@react-navigation/native';
 
 const DetallePlatillo = () => {
 
     // Pedido context
     const { platillo } = useContext(PedidosContext);
     const { nombre, imagen, descripcion, precio } = platillo;
+
+    //HOOK PARA NAVEGAR
+    const navigation = useNavigation();
+
+    // muestra en el header el titulo
+    useEffect(() => {
+        navigation.setOptions({ title: nombre });
+    }, [])
 
     return (
         <Container style={globalStyles.contenedor}>
