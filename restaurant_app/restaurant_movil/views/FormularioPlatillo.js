@@ -22,6 +22,20 @@ const FormularioPlatillo = () => {
     // state para cantidades
     const [cantidad, guardarCantidad] = useState(1);
 
+    // decrementar en uno la cantidad
+    const decrementarUno = () => {
+        if (cantidad > 1) {
+            const nuevaCantidad = parseInt(cantidad) - 1;
+            guardarCantidad(nuevaCantidad);
+        }
+    }
+
+    // incrementar en uno la cantidad
+    const incrementarUno = () => {
+        const nuevaCantidad = parseInt(cantidad) + 1;
+        guardarCantidad(nuevaCantidad);
+    }
+
     return (
         <Container>
             <Content>
@@ -33,6 +47,7 @@ const FormularioPlatillo = () => {
                                 props
                                 dark
                                 style={{ height: 80, justifyContent: 'center' }}
+                                onPress={() => decrementarUno()}
                             >
                                 <Icon style={{ fontSize: 40 }} name="remove" />
                             </Button>
@@ -42,7 +57,13 @@ const FormularioPlatillo = () => {
                                 style={{ textAlign: 'center', fontSize: 20 }}
                                 value={cantidad.toString()}
                                 keyboardType="numeric"
-                                onChangeText={cantidad => guardarCantidad(cantidad)}
+                                onChangeText={(cantidad) => {
+                                    if (cantidad === '') {
+                                        guardarCantidad(parseInt(0, 10));
+                                    } else {
+                                        guardarCantidad(parseInt(cantidad, 10));
+                                    }
+                                }}
                             />
                         </Col>
                         <Col>
@@ -50,6 +71,7 @@ const FormularioPlatillo = () => {
                                 props
                                 dark
                                 style={{ height: 80, marginLeft: 60 }}
+                                onPress={() => incrementarUno()}
                             >
                                 <Icon style={{ fontSize: 40 }} name="add" />
                             </Button>
