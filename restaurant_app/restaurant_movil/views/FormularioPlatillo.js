@@ -9,7 +9,8 @@ import {
     Grid,
     Col,
     Button,
-    Text
+    Text,
+    Left
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
@@ -24,12 +25,28 @@ const FormularioPlatillo = () => {
                     <Text style={globalStyles.titulo}>Cantidad</Text>
                     <Grid>
                         <Col>
-                            <Button>
-                                <Icon name="remove" />
+                            <Button
+                                props
+                                dark
+                                style={{ height: 80, justifyContent: 'center' }}
+                            >
+                                <Icon style={{ fontSize: 40 }} name="remove" />
                             </Button>
                         </Col>
                         <Col>
-                            <Icon name="add" />
+                            <Input
+                                style={{ textAlign: 'center', fontSize: 20 }}
+                                value="1"
+                            />
+                        </Col>
+                        <Col>
+                            <Button
+                                props
+                                dark
+                                style={{ height: 80, marginLeft: 60 }}
+                            >
+                                <Icon style={{ fontSize: 40 }} name="add" />
+                            </Button>
                         </Col>
                     </Grid>
                 </Form>
