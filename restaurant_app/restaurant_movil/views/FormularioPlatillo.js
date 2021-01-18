@@ -72,6 +72,7 @@ const FormularioPlatillo = () => {
                         }
 
                         // console.log(pedido);
+                        pedido.id += Date.now()
                         guardarPedido(pedido);
 
                         // Navegar hacia el Resumen

@@ -1,7 +1,8 @@
 import {
     SELECCIONAR_PRODUCTO,
     CONFIRMAR_ORDERNAR_PLATILLO,
-    MOSTRAR_RESUMEN
+    MOSTRAR_RESUMEN,
+    ELIMINAR_PRODUCTO
 } from '../../types';
 
 export default (state, action) => {
@@ -20,6 +21,11 @@ export default (state, action) => {
             return {
                 ...state,
                 total: action.payload
+            }
+        case ELIMINAR_PRODUCTO:
+            return {
+                ...state,
+                pedidos: state.pedidos.filter(pedido => pedido.id !== action.payload)
             }
         default:
             return state;

@@ -24,7 +24,7 @@ const ResumenPedido = () => {
     const navigation = useNavigation();
 
     // context de pedido
-    const { pedidos, total, mostrarResumen } = useContext(PedidosContext);
+    const { pedidos, total, mostrarResumen, eliminarProducto } = useContext(PedidosContext);
 
     useEffect(() => {
         calcularTotal();
@@ -53,6 +53,25 @@ const ResumenPedido = () => {
         )
     }
 
+    // Elimina un producto del arreglo del producto
+    const confirmarEliminacion = id => {
+        Alert.alert(
+            '¿Deseas eliminar este artículo?',
+            'Una vez eliminado no se puede recuperar',
+            [
+                {
+                    text: 'Confirmar',
+                    onPress: () => {
+                        // Eliminar del state
+                        eliminarProducto(id);
+                        // Calcular
+                    }
+                },
+                { text: 'Cancelar', style: 'cancel' }
+            ]
+        )
+    }
+
     return (
         <Container style={globalStyles.contenedor}>
             <Content style={globalStyles.contenido}>
@@ -70,6 +89,15 @@ const ResumenPedido = () => {
                                     <Text>{nombre}</Text>
                                     <Text>Cantidad: {cantidad}</Text>
                                     <Text>Precio: $ {precio}</Text>
+
+                                    <Button
+                                        onPress={() => confirmarEliminacion(id)}
+                                        full
+                                        danger
+                                        style={{ marginTop: 20 }}
+                                    >
+                                        <Text style={[globalStyles.botonTexto, { color: '#FFF' }]}>Eliminar</Text>
+                                    </Button>
                                 </Body>
                             </ListItem>
                         </List>
@@ -80,7 +108,7 @@ const ResumenPedido = () => {
 
                 <Button
                     onPress={() => navigation.navigate("Menu")}
-                    style={{ marginTop: 30 }}
+                    style={{ marginTop: 30, marginBottom: 30 }}
                     full
                     dark
                 >

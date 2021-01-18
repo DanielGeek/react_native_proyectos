@@ -6,7 +6,8 @@ import PedidosContext from './pedidosContext';
 import {
     SELECCIONAR_PRODUCTO,
     CONFIRMAR_ORDERNAR_PLATILLO,
-    MOSTRAR_RESUMEN
+    MOSTRAR_RESUMEN,
+    ELIMINAR_PRODUCTO
 } from '../../types';
 
 const PedidosState = props => {
@@ -45,6 +46,14 @@ const PedidosState = props => {
         })
     }
 
+    // Elimina un articulo del carrito
+    const eliminarProducto = id => {
+        dispatch({
+            type: ELIMINAR_PRODUCTO,
+            payload: id
+        })
+    }
+
     // para tener acceso a mi state de pedidos en cualquier parte de la app
     return (
         <PedidosContext.Provider
@@ -54,7 +63,8 @@ const PedidosState = props => {
                 total: state.total,
                 seleccionarPlatillo,
                 guardarPedido,
-                mostrarResumen
+                mostrarResumen,
+                eliminarProducto
             }}
         >
             {props.children}
