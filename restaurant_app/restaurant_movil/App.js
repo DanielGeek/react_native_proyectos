@@ -11,9 +11,12 @@ import FormularioPlatillo from './views/FormularioPlatillo';
 import ResumenPedido from './views/ResumenPedido';
 import ProgresoPedido from './views/ProgresoPedido';
 
+import BotonResumen from './components/ui/BotonResumen';
+
 // importar state de context para acceder de forma global a todos los states
 import FirebaseState from './context/firebase/firebaseState';
 import PedidosState from './context/pedidos/pedidosState';
+
 
 const Stack = createStackNavigator();
 
@@ -46,7 +49,8 @@ const App = () => {
                 name="Menu"
                 component={Menu}
                 options={{
-                  title: "Nuestro Menú"
+                  title: "Nuestro Menú",
+                  headerRight: props => <BotonResumen />
                 }}
               />
 
