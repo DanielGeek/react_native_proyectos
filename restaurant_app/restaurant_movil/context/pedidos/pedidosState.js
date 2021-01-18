@@ -5,7 +5,8 @@ import PedidosContext from './pedidosContext';
 
 import {
     SELECCIONAR_PRODUCTO,
-    CONFIRMAR_ORDERNAR_PLATILLO
+    CONFIRMAR_ORDERNAR_PLATILLO,
+    MOSTRAR_RESUMEN
 } from '../../types';
 
 const PedidosState = props => {
@@ -13,7 +14,8 @@ const PedidosState = props => {
     // Crear state inicial
     const initialState = {
         pedidos: [],
-        platillo: null
+        platillo: null,
+        total: 0,
     }
 
     // useReducer con dispatch para ejecutar las funciones
@@ -35,14 +37,24 @@ const PedidosState = props => {
         })
     }
 
+    // Muestra el total a pagar en el resumen
+    const mostrarResumen = total => {
+        dispatch({
+            type: MOSTRAR_RESUMEN,
+            payload: total
+        })
+    }
+
     // para tener acceso a mi state de pedidos en cualquier parte de la app
     return (
         <PedidosContext.Provider
             value={{
                 pedidos: state.pedidos,
                 platillo: state.platillo,
+                total: state.total,
                 seleccionarPlatillo,
-                guardarPedido
+                guardarPedido,
+                mostrarResumen
             }}
         >
             {props.children}
