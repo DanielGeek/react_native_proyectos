@@ -1,9 +1,12 @@
+import React from 'react';
 import { View, Text } from 'react-native'
 
-export default function ResumenPedido() {
+const ResumenPedido = () => {
     return (
         <View>
             <Text>Resumen Pedido</Text>
         </View>
-    )
+    );
 }
+
+export default ResumenPedido;

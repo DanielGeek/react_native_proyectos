@@ -4,7 +4,8 @@ import PedidosReducer from './pedidosReducer';
 import PedidosContext from './pedidosContext';
 
 import {
-    SELECCIONAR_PRODUCTO
+    SELECCIONAR_PRODUCTO,
+    CONFIRMAR_ORDERNAR_PLATILLO
 } from '../../types';
 
 const PedidosState = props => {
@@ -26,13 +27,22 @@ const PedidosState = props => {
         })
     }
 
-    // para tener acceso a mi state de firebase y su BD en cualquier parte de la app
+    // Cuando el usuario confirma un platillo
+    const guardarPedido = pedido => {
+        dispatch({
+            type: CONFIRMAR_ORDERNAR_PLATILLO,
+            payload: pedido
+        })
+    }
+
+    // para tener acceso a mi state de pedidos en cualquier parte de la app
     return (
         <PedidosContext.Provider
             value={{
                 pedidos: state.pedidos,
                 platillo: state.platillo,
-                seleccionarPlatillo
+                seleccionarPlatillo,
+                guardarPedido
             }}
         >
             {props.children}
