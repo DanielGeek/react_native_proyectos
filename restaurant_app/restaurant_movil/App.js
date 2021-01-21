@@ -17,6 +17,8 @@ import BotonResumen from './components/ui/BotonResumen';
 import FirebaseState from './context/firebase/firebaseState';
 import PedidosState from './context/pedidos/pedidosState';
 
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Setting a timer for a long period of time']);
 
 const Stack = createStackNavigator();
 

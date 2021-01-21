@@ -49,7 +49,7 @@ const ResumenPedido = () => {
 
                         // Crear un objeto
                         const pedidoObj = {
-                            tiempo_entregada: 0,
+                            tiempo_entrega: 0,
                             completado: false,
                             total: Number(total),
                             orden: pedidos, //array
