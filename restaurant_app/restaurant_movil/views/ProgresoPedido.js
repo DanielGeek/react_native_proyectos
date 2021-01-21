@@ -9,9 +9,9 @@ import { useContext } from 'react/cjs/react.development';
 
 const ProgresoPedido = () => {
 
-    const { } = useContext(PedidosContext);
+    const { id_pedido } = useContext(PedidosContext);
     return (
-        <Text>Progreso pedido</Text>
+        <Text>{id_pedido}</Text>
     )
 }
 
