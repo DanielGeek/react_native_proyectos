@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { FirebaseContext } from '../../firebase';
 
 const Orden = ({ orden }) => {
+
+    const [tiemp_entrega, guardarTiempoEntrega] = useState(0);
+
+    // Context de firebase
+    const { firebase } = useContext(FirebaseContext);
+
+    // define el tiempo de entrega en tiempo real
+    const definirTiempo = id => {
+        try {
+            firebase.db.collection('ordenes')
+                .doc(id)
+                .update({
+                    tiemp_entrega
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="sm:w-1/2 lg:w-1/3 px-2 mb-4">
@@ -23,8 +42,11 @@ const Orden = ({ orden }) => {
                             min="1"
                             max="20"
                             placeholder="20"
+                            value={tiemp_entrega}
+                            onChange={e => guardarTiempoEntrega(parseInt(e.target.value))}
                         />
                         <button
+                            onClick={() => definirTiempo(orden.id)}
                             type="submit"
                             className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
                         >
