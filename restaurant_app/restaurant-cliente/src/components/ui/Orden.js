@@ -3,7 +3,7 @@ import { FirebaseContext } from '../../firebase';
 
 const Orden = ({ orden }) => {
 
-    const [tiemp_entrega, guardarTiempoEntrega] = useState(0);
+    const [tiempo_entrega, guardarTiempoEntrega] = useState(0);
 
     // Context de firebase
     const { firebase } = useContext(FirebaseContext);
@@ -14,7 +14,7 @@ const Orden = ({ orden }) => {
             firebase.db.collection('ordenes')
                 .doc(id)
                 .update({
-                    tiemp_entrega
+                    tiempo_entrega
                 })
         } catch (error) {
             console.log(error);
@@ -42,7 +42,7 @@ const Orden = ({ orden }) => {
                             min="1"
                             max="20"
                             placeholder="20"
-                            value={tiemp_entrega}
+                            value={tiempo_entrega}
                             onChange={e => guardarTiempoEntrega(parseInt(e.target.value))}
                         />
                         <button
@@ -53,6 +53,12 @@ const Orden = ({ orden }) => {
                             Definir tiempo
                         </button>
                     </div>
+                )}
+
+                {orden.tiempo_entrega > 0 && (
+                    <p className="text-gray-700">Tiempo de Entrega:
+                        <span className="font-bold"> {orden.tiempo_entrega} Minutos</span>
+                    </p>
                 )}
             </div>
         </div>
