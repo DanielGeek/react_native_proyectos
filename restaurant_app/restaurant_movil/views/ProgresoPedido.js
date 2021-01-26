@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import PedidosContext from '../context/pedidos/pedidosContext';
 import { useContext } from 'react/cjs/react.development';
 import firebase from '../firebase';
+import Countdown from 'react-countdown';
 
 
 const ProgresoPedido = () => {
@@ -26,9 +27,44 @@ const ProgresoPedido = () => {
         obtenerProducto();
     }, []);
 
+    // Muestra el countdown en la pantalla
+    const renderer = ({ minutes, seconds }) => {
+        return (
+            <Text style={styles.tiempo}>{minutes}:{seconds}</Text>
+        )
+    }
+
     return (
-        <Text>{tiempo}</Text>
+        <Container style={globalStyles.contenedor}>
+            <View style={[globalStyles.contenido, { marginTop: 50 }]}>
+                {tiempo === 0 && (
+                    <>
+                        <Text style={{ textAlign: 'center' }}>Hemos recibido tu orden...</Text>
+                        <Text style={{ textAlign: 'center' }}>Estamos calculando el tiempo de entrega</Text>
+                    </>
+                )}
+
+                {tiempo > 0 && (
+                    <>
+                        <Text style={{ textAlign: 'center' }}>Su orden estará lista en: </Text>
+                        <Countdown
+                            date={Date.now() + tiempo * 60000}
+                            renderer={renderer}
+                        />
+                    </>
+                )}
+            </View>
+        </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    tiempo: {
+        marginBottom: 20,
+        fontSize: 60,
+        textAlign: 'center',
+        marginTop: 30,
+    }
+})
 
 export default ProgresoPedido;
