@@ -11,6 +11,8 @@ import Countdown from 'react-countdown';
 
 const ProgresoPedido = () => {
 
+    const navigation = useNavigation();
+
     const { id_pedido } = useContext(PedidosContext);
 
     const [tiempo, guardarTiempo] = useState(0);
@@ -62,8 +64,12 @@ const ProgresoPedido = () => {
                         <H1 style={styles.textoCompletado}>Orden Lista</H1>
                         <H3 style={styles.textoCompletado}>Por favor, pase a recoger su pedido</H3>
 
-                        <Button>
-                            <Text>Comenzar una orden nueva</Text>
+                        <Button
+                            style={[globalStyles.boton, { marginTop: 100 }]}
+                            block
+                            onPress={() => navigation.navigate("NuevaOrden")}
+                        >
+                            <Text style={globalStyles.botonTexto}>Comenzar una orden nueva</Text>
                         </Button>
                     </>
                 )}
