@@ -1,30 +1,29 @@
-const cursos = [
-  {
-    titulo: "Javascript Moderno Guía definitiva Construye +10 Proyectos",
-    tecnologia: "Javascript ES6",
-  },
-  {
-    titulo: "React - La Guía Completa: Hooks Context Redux MERN +15 Apps",
-    tecnologia: "React",
-  },
-  {
-    titulo: "Node js - Bootcamp Desarrollo Web inc. MVC y REST API",
-    tecnologia: "React",
-  },
-  {
-    titulo: "React js - ReactJS Avanzado - FullStack React GraphQL y Apollo",
-    tecnologia: "React",
-  },
-];
+const Usuario = require('../models/Usuario');
 
 const resolvers = {
   Query: {
-    obtenerCursos: () => cursos,
-    obtenerTecnologia: () => cursos
+
   },
   Mutation: {
-    crearUsuario: (_, { input }) => {
+    crearUsuario: async (_, { input }) => {
+      const { email, password } = input;
 
+      const existeUsuario = await Usuario.findOne({ email });
+
+      // si el usuario existe
+      if (existeUsuario) {
+        throw new Error('El usuario ya esta registrado')
+      }
+
+      try {
+        const nuevoUsuario = new Usuario(input)
+        console.log(nuevoUsuario)
+
+        nuevoUsuario.save();
+        return "Usuario creado correctamente";
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
