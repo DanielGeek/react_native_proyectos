@@ -4,6 +4,7 @@ const { gql } = require('apollo-server');
 /*                          tipos de datos a retornar                         */
 /* -------------------------------------------------------------------------- */
 const typeDefs = gql`
+  # datos a retornar
   type Token {
     token: String
   }
@@ -19,7 +20,7 @@ const typeDefs = gql`
     proyecto: String
     estado: Boolean
   }
-
+  # obtener datos
   type Query {
     obtenerProyectos: [Proyecto]
   }
@@ -43,7 +44,7 @@ const typeDefs = gql`
     nombre: String!
     proyecto: String!
   }
-
+  # metodos para CUD
   type Mutation {
 
     # Proyectos
@@ -55,6 +56,7 @@ const typeDefs = gql`
 
     # Tareas
     nuevaTarea(input: TareaInput): Tarea
+    actualizarTarea(id: ID!, input: TareaInput, estado: Boolean ): Tarea
   }
 
 `;
