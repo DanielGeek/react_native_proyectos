@@ -16,11 +16,18 @@ const crearToken = (usuario, secreta, expiresIn) => {
 
 const resolvers = {
   Query: {
+    /* -------------------------------------------------------------------------- */
+    /*                  obtener todos los proyecto de un usuario                  */
+    /* -------------------------------------------------------------------------- */
+    obtenerProyectos: async (_, { }, ctx) => {
+      const proyectos = await Proyecto.find({ creador: ctx.usuario.id });
 
+      return proyectos;
+    }
   },
 
   /* -------------------------------------------------------------------------- */
-  /*                      metodos CRUD                                          */
+  /*                      metodos CUD                                          */
   /* -------------------------------------------------------------------------- */
   Mutation: {
 
