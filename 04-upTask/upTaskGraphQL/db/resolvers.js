@@ -114,7 +114,7 @@ const resolvers = {
         throw new Error('Proyecto no encontrado');
       }
 
-      // Revisar que si la persona que trata de editarlo, es el creador
+      // Revisar si la persona que trata de editarlo, es el creador
       if (proyecto.creador.toString() !== ctx.usuario.id) {
         throw new Error('No tienes las credenciales para editar');
       }
@@ -122,6 +122,28 @@ const resolvers = {
       // Actualizar el proyecto y retornar el nuevo
       proyecto = await Proyecto.findOneAndUpdate({ _id: id }, input, { new: true });
       return proyecto;
+    },
+    /* -------------------------------------------------------------------------- */
+    /*                            Eliminar un proyecto                            */
+    /* -------------------------------------------------------------------------- */
+    eliminarProyecto: async (_, { id }, ctx) => {
+      // Revisar si el proyecto existe o no
+      let proyecto = await Proyecto.findById(id);
+
+      if (!proyecto) {
+        throw new Error('Proyecto no encontrado');
+      }
+
+      // Revisar si la persona que trata de eliminarlo, es el creador
+      if (proyecto.creador.toString() !== ctx.usuario.id) {
+        throw new Error('No tienes las credenciales para elimnar');
+      }
+
+      // Eliminar
+      await Proyecto.findOneAndDelete({ _id: id });
+
+      return "Proyecto Eliminado";
+
     }
   }
 }
