@@ -32,24 +32,18 @@ const resolvers = {
 
       const existeUsuario = await Usuario.findOne({ email });
 
-      /* -------------------------------------------------------------------------- */
-      /*                            si el usuario existe                            */
-      /* -------------------------------------------------------------------------- */
+      // si el usuario existe
       if (existeUsuario) {
         throw new Error('El usuario ya esta registrado')
       }
 
       try {
 
-        /* -------------------------------------------------------------------------- */
-        /*                              Hashear password                              */
-        /* -------------------------------------------------------------------------- */
+        // Hashear password
         const salt = await bcryptjs.genSalt(10);
         input.password = await bcryptjs.hash(password, salt);
 
-        /* -------------------------------------------------------------------------- */
-        /*                           Registrar nuevo usuario                          */
-        /* -------------------------------------------------------------------------- */
+        // Registrar nuevo usuario
         const nuevoUsuario = new Usuario(input)
         // console.log(nuevoUsuario)
 
@@ -62,30 +56,21 @@ const resolvers = {
     autenticarUsuario: async (_, { input }) => {
       const { email, password } = input;
 
-      /* -------------------------------------------------------------------------- */
-      /*                            Si el usuario existe                            */
-      /* -------------------------------------------------------------------------- */
+      // Si el usuario existe
       const existeUsuario = await Usuario.findOne({ email });
 
-      /* -------------------------------------------------------------------------- */
-      /*                            si el usuario existe                            */
-      /* -------------------------------------------------------------------------- */
+      // si el usuario no existe
       if (!existeUsuario) {
         throw new Error('El usuario no existe');
       }
 
-      /* -------------------------------------------------------------------------- */
-      /*                         Si el password es correcto                         */
-      /* -------------------------------------------------------------------------- */
+      // Si el password es correcto
       const passwordCorreco = await bcryptjs.compare(password, existeUsuario.password);
 
       if (!passwordCorreco) {
         throw new Error('Password Incorrecto');
       }
-
-      /* -------------------------------------------------------------------------- */
-      /*                             Dar acceso a la app                            */
-      /* -------------------------------------------------------------------------- */
+      // Dar acceso a la app
       return {
         token: crearToken(existeUsuario, process.env.SECRETA, '2hr')
       }
@@ -99,13 +84,10 @@ const resolvers = {
       try {
         const proyecto = new Proyecto(input);
 
-        /* -------------------------------------------------------------------------- */
-        /*                             asociar el creador                             */
-        /* -------------------------------------------------------------------------- */
+        // asociar el creador
         proyecto.creador = ctx.usuario.id;
-        /* -------------------------------------------------------------------------- */
-        /*                            almacenarlo en la BD                            */
-        /* -------------------------------------------------------------------------- */
+
+        // almacenarlo en la BD
         const resultado = await proyecto.save();
 
         return resultado;
@@ -113,6 +95,26 @@ const resolvers = {
         console.log(error);
       }
       console.log('creando proyecto');
+    },
+    /* -------------------------------------------------------------------------- */
+    /*                             Actualizar proyecto                            */
+    /* -------------------------------------------------------------------------- */
+    actualizarProyecto: async (_, { id, input }, ctx) => {
+      // Revisar si el proyecto existe o no
+      let proyecto = await Proyecto.findById(id);
+
+      if (!proyecto) {
+        throw new Error('Proyecto no encontrado');
+      }
+
+      // Revisar que si la persona que trata de editarlo, es el creador
+      if (proyecto.creador.toString() !== ctx.usuario.id) {
+        throw new Error('No tienes las credenciales para editar');
+      }
+
+      // Actualizar el proyecto y retornar el nuevo
+      proyecto = await Proyecto.findOneAndUpdate({ _id: id }, input, { new: true });
+      return proyecto;
     }
   }
 }
