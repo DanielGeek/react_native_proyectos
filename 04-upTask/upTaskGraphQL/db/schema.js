@@ -20,9 +20,17 @@ const typeDefs = gql`
     proyecto: String
     estado: Boolean
   }
+
   # obtener datos
   type Query {
     obtenerProyectos: [Proyecto]
+    # obtener tareas por id de proyecto
+    obtenerTareas(input: ProyectoIDInput): [Tarea]
+  }
+
+  # id del proyecto
+  input ProyectoIDInput {
+    proyecto: String!
   }
 
   input UsuarioInput {

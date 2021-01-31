@@ -25,6 +25,14 @@ const resolvers = {
       const proyectos = await Proyecto.find({ creador: ctx.usuario.id });
 
       return proyectos;
+    },
+    /* -------------------------------------------------------------------------- */
+    /*                      Obtener tareas por id de proyecto                     */
+    /* -------------------------------------------------------------------------- */
+    obtenerTareas: async (_, { input }, ctx) => {
+      const tareas = await Tarea.find({ creador: ctx.usuario.id }).where('proyecto').equals(input.proyecto);
+
+      return tareas;
     }
   },
 
