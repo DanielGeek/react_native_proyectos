@@ -191,6 +191,27 @@ const resolvers = {
       tarea = await Tarea.findOneAndUpdate({ _id: id }, input, { new: true });
 
       return tarea;
+    },
+    /* -------------------------------------------------------------------------- */
+    /*                               Eliminar tarea                               */
+    /* -------------------------------------------------------------------------- */
+    eliminarTarea: async (_, { id }, ctx) => {
+      // Si la tarea existe o no
+      let tarea = await Tarea.findById(id);
+
+      if (!tarea) {
+        throw new Error('Tarea no encontrada');
+      }
+
+      // Si la persona que elimina es el creador
+      if (tarea.creador.toString() !== ctx.usuario.id) {
+        throw new Error('No tienes las credenciales para eliminar');
+      }
+
+      // Eliminar
+      await Tarea.findOneAndDelete({ _id: id });
+
+      return "Tarea Eliminada";
     }
   }
 }

@@ -7,3 +7,6 @@
 ![Screenshot](img/eliminarProyecto.png)
 ![Screenshot](img/nuevaTarea.png)
 ![Screenshot](img/mongoDB.png)
+![Screenshot](img/actualizarTarea.png)
+![Screenshot](img/obtenerTareas.png)
+![Screenshot](img/eliminartarea.png)
