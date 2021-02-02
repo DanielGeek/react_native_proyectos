@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import {
   Container,
   Button,
@@ -10,11 +10,10 @@ import {
   Item,
   Toast,
 } from 'native-base';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 const Login = () => {
-
   // React navigation
   const navigation = useNavigation();
 
