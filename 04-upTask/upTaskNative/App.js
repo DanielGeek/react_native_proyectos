@@ -30,7 +30,7 @@ const App = () => {
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
-                fontWright: 'bold',
+                fontWeight: 'bold',
               },
             }}
           />

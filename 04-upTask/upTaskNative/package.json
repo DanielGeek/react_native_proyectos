@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@apollo/client": "^3.3.7",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
+    "graphql": "^15.5.0",
     "native-base": "^2.15.2",
     "react": "16.13.1",
     "react-native": "0.63.4",

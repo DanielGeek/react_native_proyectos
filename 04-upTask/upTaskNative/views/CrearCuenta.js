@@ -10,15 +10,11 @@ import {
   Item,
   Toast,
 } from 'native-base';
-import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 const CrearCuenta = () => {
-  // React navigation
-  const navigation = useNavigation();
-
   return (
-    <Container style={[globalStyles.contenedor, { backgroundColor: '#e84347' }]}>
+    <Container style={[globalStyles.contenedor, {backgroundColor: '#e84347'}]}>
       <View style={globalStyles.contenido}>
         <H1 style={globalStyles.titulo}>UpTask</H1>
 
