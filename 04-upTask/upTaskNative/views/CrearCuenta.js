@@ -54,7 +54,7 @@ const CrearCuenta = () => {
 
     // guardar el usuario, resolver en db/resolvers
     try {
-      const { data } = await crearUsuario({
+      const {data} = await crearUsuario({
         variables: {
           input: {
             nombre,
@@ -63,9 +63,10 @@ const CrearCuenta = () => {
           },
         },
       });
-      console.log(data);
+      guardarMensaje(data.crearUsuario);
+      navigation.navigate('Login');
     } catch (error) {
-      console.log(error);
+      guardarMensaje(error.message);
     }
   };
 
