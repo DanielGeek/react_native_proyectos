@@ -10,8 +10,8 @@ import {
   Item,
   Toast,
 } from 'native-base';
-import globalStyles from '../styles/global';
 import {useNavigation} from '@react-navigation/native';
+import globalStyles from '../styles/global';
 // Apollo
 import {gql, useMutation} from '@apollo/client';
 
@@ -52,17 +52,18 @@ const CrearCuenta = () => {
 
     guardarMensaje(null);
 
-    // guardar el usuario
+    // guardar el usuario, resolver en db/resolvers
     try {
       const { data } = await crearUsuario({
         variables: {
           input: {
             nombre,
             email,
-            password
-          }
-        }
-      })
+            password,
+          },
+        },
+      });
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
