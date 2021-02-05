@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View} from 'react-native';
 import {
   Container,
@@ -14,8 +14,33 @@ import {useNavigation} from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 const Login = () => {
-  // React navigation
+  // State del formulario
+  const [email, guardarEmail] = useState('');
+  const [password, guardarPassword] = useState('');
+
+  const [mensaje, guardarMensaje] = useState(null);
+
+  // React Navigation
   const navigation = useNavigation();
+
+  // Cuando el usuario presiona en iniciar sesión
+  const handleSubmit = async () => {
+    // Validar
+    if (email === '' || password === '') {
+      // Mostrar un error
+      guardarMensaje('Todos los campos son obligatorios');
+      return;
+    }
+  };
+
+  // Muestra un mensaje toast
+  const mostrarAlerta = () => {
+    Toast.show({
+      text: mensaje,
+      buttonText: 'OK',
+      duration: 5000,
+    });
+  };
 
   return (
     <Container style={[globalStyles.contenedor, { backgroundColor: '#e84347' }]}>
@@ -24,14 +49,26 @@ const Login = () => {
 
         <Form>
           <Item inlineLabel last style={globalStyles.input}>
-            <Input placeholder="Email" />
+            <Input
+              autoCompleteType="email"
+              placeholder="Email"
+              onChangeText={(texto) => guardarEmail(texto)}
+            />
           </Item>
           <Item inlineLabel last style={globalStyles.input}>
-            <Input secureTextEntry={true} placeholder="Password" />
+            <Input
+              secureTextEntry={true}
+              placeholder="Password"
+              onChangeText={(texto) => guardarPassword(texto)}
+            />
           </Item>
         </Form>
 
-        <Button squeare block style={globalStyles.boton}>
+        <Button
+          squeare
+          block
+          style={globalStyles.boton}
+          onPress={() => handleSubmit()}>
           <Text style={globalStyles.botonTexto}>Iniciar Sesión</Text>
         </Button>
         <Text
@@ -40,6 +77,7 @@ const Login = () => {
           {' '}
           Crear Cuenta
         </Text>
+        {mensaje && mostrarAlerta()}
       </View>
     </Container>
   );

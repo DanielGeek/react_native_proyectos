@@ -50,8 +50,6 @@ const CrearCuenta = () => {
       return;
     }
 
-    guardarMensaje(null);
-
     // guardar el usuario, resolver en db/resolvers
     try {
       const {data} = await crearUsuario({
