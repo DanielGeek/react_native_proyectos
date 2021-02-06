@@ -24,7 +24,6 @@ const NUEVO_PROYECTO = gql`
 `;
 
 const NuevoProyecto = () => {
-
   // navigation
   const navigation = useNavigation();
 
@@ -88,7 +87,7 @@ const NuevoProyecto = () => {
           style={[globalStyles.boton, {marginTop: 30}]}
           square
           block
-          onPress={() => handleSubmit() }>
+          onPress={() => handleSubmit()}>
           <Text style={globalStyles.botonTexto}>Crear Proyecto</Text>
         </Button>
 
