@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 
 import Login from './views/Login';
 import CrearCuenta from './views/CrearCuenta';
+import Proyectos from './views/Proyectos';
 
 const App = () => {
   return (
@@ -28,6 +29,20 @@ const App = () => {
               component={CrearCuenta}
               options={{
                 title: 'Crear Cuenta',
+                headerStyle: {
+                  backgroundColor: '#28303B',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+            <Stack.Screen
+              name="Proyectos"
+              component={Proyectos}
+              options={{
+                title: 'Proyectos',
                 headerStyle: {
                   backgroundColor: '#28303B',
                 },
