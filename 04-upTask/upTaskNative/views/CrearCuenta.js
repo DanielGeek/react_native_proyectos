@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import {
   Container,
   Button,
@@ -78,7 +78,7 @@ const CrearCuenta = () => {
   };
 
   return (
-    <Container style={[globalStyles.contenedor, { backgroundColor: '#e84347' }]}>
+    <Container style={[globalStyles.contenedor, {backgroundColor: '#e84347'}]}>
       <View style={globalStyles.contenido}>
         <H1 style={globalStyles.titulo}>UpTask</H1>
 

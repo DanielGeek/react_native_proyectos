@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import {
   Container,
@@ -13,6 +13,17 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
+// Apollo
+import {gql, useMutation} from '@apollo/client';
+
+const AUTENTICAR_USUARIO = gql`
+  mutation autenticarUsuario($input: AutenticarInput) {
+    autenticarUsuario(input: $input) {
+      token
+    }
+  }
+`;
+
 const Login = () => {
   // State del formulario
   const [email, guardarEmail] = useState('');
@@ -23,6 +34,9 @@ const Login = () => {
   // React Navigation
   const navigation = useNavigation();
 
+  // Mutation de apollo
+  const [autenticarUsuario] = useMutation(AUTENTICAR_USUARIO);
+
   // Cuando el usuario presiona en iniciar sesión
   const handleSubmit = async () => {
     // Validar
@@ -30,6 +44,23 @@ const Login = () => {
       // Mostrar un error
       guardarMensaje('Todos los campos son obligatorios');
       return;
+    }
+
+    try {
+      // autenticar el usuario
+      const {data} = await autenticarUsuario({
+        variables: {
+          input: {
+            email,
+            password,
+          },
+        },
+      });
+
+      const {token} = data.autenticarUsuario;
+    } catch (error) {
+      // si hay un error mostrarlo
+      guardarMensaje(error.message);
     }
   };
 
@@ -43,7 +74,7 @@ const Login = () => {
   };
 
   return (
-    <Container style={[globalStyles.contenedor, { backgroundColor: '#e84347' }]}>
+    <Container style={[globalStyles.contenedor, {backgroundColor: '#e84347'}]}>
       <View style={globalStyles.contenido}>
         <H1 style={globalStyles.titulo}>UpTask</H1>
 
