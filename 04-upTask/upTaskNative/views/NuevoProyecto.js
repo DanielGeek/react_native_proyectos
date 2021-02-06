@@ -12,20 +12,52 @@ import {
 } from 'native-base';
 import globalStyles from '../styles/global';
 import {useNavigation} from '@react-navigation/native';
+import {gql, useMutation} from '@apollo/client';
+
+const NUEVO_PROYECTO = gql`
+  mutation nuevoProyecto($input: ProyectoInput) {
+    nuevoProyecto(input: $input) {
+      nombre
+      id
+    }
+  }
+`;
 
 const NuevoProyecto = () => {
+
+  // navigation
+  const navigation = useNavigation();
+
   // state del componente
   const [nombre, guardarNombre] = useState('');
   const [mensaje, guardarMensaje] = useState(null);
 
+  // Apollo
+  const [nuevoProyecto] = useMutation(NUEVO_PROYECTO);
+
   // Validar crear proyecto
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (nombre === '') {
       guardarMensaje('El Nombre del Proyecto es obligatorio');
       return;
     }
 
     // Guardar el Proyecto en la base de datos
+    try {
+      const {data} = await nuevoProyecto({
+        variables: {
+          input: {
+            nombre,
+          },
+        },
+      });
+      // console.log(data);
+      guardarMensaje('Proyecto Creado Correctamente');
+      navigation.navigate('Proyectos');
+    } catch (error) {
+      // console.log(error);
+      guardarMensaje(error.message);
+    }
   };
 
   // Muestra un mensaje toast
