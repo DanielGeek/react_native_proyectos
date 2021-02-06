@@ -15,6 +15,7 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
+    "apollo-link-context": "^1.0.20",
     "graphql": "^15.5.0",
     "native-base": "^2.15.2",
     "react": "16.13.1",
