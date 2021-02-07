@@ -11,8 +11,10 @@ import {
   Input,
   Toast,
 } from 'native-base';
+import {StyleSheet} from 'react-native';
 import globalStyles from '../styles/global';
 import {gql, useMutation, useQuery} from '@apollo/client';
+import Tarea from '../components/Tarea';
 
 // Crea nuevas tareas
 const NUEVA_TAREA = gql`
@@ -122,9 +124,27 @@ const Proyecto = ({route}) => {
           <Text>Crear Tarea</Text>
         </Button>
       </Form>
+
+      <H2 style={globalStyles.subtitulo}>Tareas: {route.params.nombre}</H2>
+
+      <Content>
+        <List style={styles.contenido}>
+          {data.obtenerTareas.map((tarea) => (
+            <Tarea key={tarea.id} tarea={tarea} />
+          ))}
+        </List>
+      </Content>
+
       {mensaje && mostrarAlerta()}
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  contenido: {
+    backgroundColor: '#FFF',
+    marginHorizontal: '2.5%',
+  },
+});
 
 export default Proyecto;
