@@ -130,7 +130,7 @@ const Proyecto = ({route}) => {
       <Content>
         <List style={styles.contenido}>
           {data.obtenerTareas.map((tarea) => (
-            <Tarea key={tarea.id} tarea={tarea} />
+            <Tarea key={tarea.id} tarea={tarea} proyectoId={id} />
           ))}
         </List>
       </Content>

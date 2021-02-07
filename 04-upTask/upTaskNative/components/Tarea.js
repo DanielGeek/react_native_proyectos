@@ -20,10 +20,47 @@ const ELIMINAR_TAREA = gql`
   }
 `;
 
-const Tarea = ({tarea}) => {
+// Consulta las tareas del proyecto
+const OBTENER_TAREAS = gql`
+  query obtenerTareas($input: ProyectoIDInput) {
+    obtenerTareas(input: $input) {
+      id
+      nombre
+      estado
+    }
+  }
+`;
+
+const Tarea = ({tarea, proyectoId}) => {
   // Apollo
   const [actualizarTarea] = useMutation(ACTUALIZAR_TAREA);
-  const [eliminarTarea] = useMutation(ELIMINAR_TAREA);
+  const [eliminarTarea] = useMutation(ELIMINAR_TAREA, {
+    update(cache) {
+      const {obtenerTareas} = cache.readQuery({
+        query: OBTENER_TAREAS,
+        variables: {
+          input: {
+            proyecto: proyectoId,
+          },
+        },
+      });
+      // sobreescribir las tarea en cache con las nuevas
+      cache.writeQuery({
+        query: OBTENER_TAREAS,
+        variables: {
+          input: {
+            proyecto: proyectoId,
+          },
+        },
+        data: {
+          ...obtenerTareas,
+          obtenerTareas: obtenerTareas.filter(
+            (tareaActual) => tareaActual.id !== tarea.id,
+          ),
+        },
+      });
+    },
+  });
 
   // Cambia el estado de una tarea a completo o incompleto
   const cambiarEstado = async () => {
