@@ -10,7 +10,7 @@ const Tarea = ({tarea}) => {
         </Left>
 
         <Right>
-          <Text>Icono aqui</Text>
+          <Icon name="ios-checkmark-circle" />
         </Right>
       </ListItem>
     </>
