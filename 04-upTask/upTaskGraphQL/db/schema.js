@@ -50,7 +50,7 @@ const typeDefs = gql`
 
   input TareaInput {
     nombre: String!
-    proyecto: String!
+    proyecto: String
   }
   # metodos para CUD
   type Mutation {
