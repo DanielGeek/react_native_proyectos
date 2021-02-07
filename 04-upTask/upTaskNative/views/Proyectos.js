@@ -58,14 +58,12 @@ const Proyectos = () => {
             <ListItem
               key={proyecto.id}
               onPress={() => navigation.navigate('Proyecto', proyecto)}>
-                <Left>
-                  <Text>{proyecto.nombre}</Text>
-                </Left>
-                <Right>
-
-                </Right>
-              </ListItem>
-            ))}
+              <Left>
+                <Text>{proyecto.nombre}</Text>
+              </Left>
+              <Right />
+            </ListItem>
+          ))}
         </List>
       </Content>
     </Container>
