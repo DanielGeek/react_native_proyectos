@@ -53,7 +53,6 @@ const Tarea = ({tarea, proyectoId}) => {
           },
         },
         data: {
-          ...obtenerTareas,
           obtenerTareas: obtenerTareas.filter(
             (tareaActual) => tareaActual.id !== tarea.id,
           ),
