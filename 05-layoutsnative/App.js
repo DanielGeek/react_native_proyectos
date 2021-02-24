@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import {View, StyleSheet, Image, Text, ScrollView} from 'react-native';
 
 const App = () => {
   return (
     <>
       <ScrollView>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{flexDirection: 'row'}}>
           <Image
             style={styles.banner}
             source={require('./assets/img/bg.jpg')}
