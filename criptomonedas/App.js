@@ -7,11 +7,12 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import Header from './components/Header';
 
 const App = () => {
   return (
     <>
-
+      <Header />
     </>
   );
 };
