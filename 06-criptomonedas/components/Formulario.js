@@ -11,6 +11,7 @@ const Formulario = () => {
         <Picker.Item label="- Seleccione -" value="" />
         <Picker.Item label="Dolar de Estados Unidos" value="USD" />
         <Picker.Item label="Peso Mexicano" value="MXN" />
+        <Picker.Item label="Euro" value="EUR" />
         <Picker.Item label="Libra Esterlina" value="GBP" />
       </Picker>
       <Text style={styles.label}>Criptomoneda</Text>
