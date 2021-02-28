@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {StyleSheet, Image, View} from 'react-native';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
+import axios from 'axios';
 
 const App = () => {
   const [moneda, guardarMoneda] = useState('');
   const [criptomoneda, guardarCriptomoneda] = useState('');
   const [consultarAPI, guardarConsultarAPI] = useState(false);
+
+  useEffect(() => {
+    const cotizarCriptomoneda = async () => {
+      if (consultarAPI) {
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
+        const resultado = await axios.get(url);
+        console.log(resultado.data.DISPLAY);
+        guardarConsultarAPI(false);
+      }
+    };
+    cotizarCriptomoneda();
+  }, [consultarAPI]);
 
   return (
     <>
