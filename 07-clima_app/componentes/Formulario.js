@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
 const Formulario = () => {
@@ -27,6 +27,12 @@ const Formulario = () => {
           <Picker.Item label="Perú" value="PE" />
         </Picker>
       </View>
+
+      <TouchableWithoutFeedback>
+        <View>
+          <Text>Buscar Clima</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   </>
   );
