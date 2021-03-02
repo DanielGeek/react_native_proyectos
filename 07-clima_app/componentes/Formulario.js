@@ -9,12 +9,15 @@ const Formulario = () => {
     <View style={styles.formulario}>
       <View>
         <TextInput
+          style={styles.input}
           placeholder="Ciudad"
           placeholderTextColor="#666"
         />
       </View>
       <View>
-        <Picker>
+        <Picker
+          style={{ height: 120, backgroundColor: '#FFF'}}
+        >
           <Picker.Item label="-- Seleccione un país --" value="" />
           <Picker.Item label="Venezuela" value="VE" />
           <Picker.Item label="Chile" value="CH" />
@@ -29,8 +32,10 @@ const Formulario = () => {
       </View>
 
       <TouchableWithoutFeedback>
-        <View>
-          <Text>Buscar Clima</Text>
+        <View
+          style={styles.btnBuscar}
+        >
+          <Text  style={styles.textoBuscar}>Buscar Clima</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -39,9 +44,27 @@ const Formulario = () => {
 };
 
 const styles = StyleSheet.create({
-  formulario: {
-    marginTop: 100,
-  }
+  input: {
+    padding: 10,
+    height: 50,
+    backgroundColor: '#FFF',
+    fontSize: 20,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  btnBuscar: {
+    marginTop: 50,
+    backgroundColor: '#000',
+    padding: 10,
+    justifyContent: 'center',
+  },
+  textoBuscar: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    fontSize: 18,
+  },
 });
 
 export default Formulario;
