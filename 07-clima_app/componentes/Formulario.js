@@ -9,11 +9,17 @@ const Formulario = () => {
 
   const animacionEntrada = () => {
     Animated.spring(animacionboton, {
-      toValue: .75,
+      toValue: 0.75,
+      useNativeDriver: true,
     }).start();
   };
   const animacionSalida = () => {
-    console.log('salida');
+    Animated.spring(animacionboton, {
+      toValue: 1,
+      useNativeDriver: true,
+      friction: 1,
+      tension: 30,
+    }).start();
   };
 
   const estiloAnimacion = {
