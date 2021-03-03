@@ -3,17 +3,20 @@ import React, { useState } from 'react';
 import {Alert, Animated, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
-const Formulario = ({busqueda, guardarBusqueda}) => {
+const Formulario = ({busqueda, guardarBusqueda, guardarConsultar}) => {
 
   const {pais, ciudad} = busqueda;
 
   const [animacionboton] = useState(new Animated.Value(1));
 
   const consultarClima = () => {
-    if(pais.trim() === '' || ciudad.trim() === '') {
+    if (pais.trim() === '' || ciudad.trim() === '') {
       mostrarAlerta();
       return;
     }
+
+    // consultar la api
+    guardarConsultar(true);
   };
 
   const mostrarAlerta = () => {

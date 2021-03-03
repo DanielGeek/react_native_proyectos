@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -14,6 +14,18 @@ const App = () => {
     ciudad: '',
     pais: '',
   });
+  const [consultar, guardarConsultar] = useState(false);
+
+  const {ciudad, pais} = busqueda;
+
+  useEffect(() => {
+    if (consultar) {
+      const appId = 'apikey';
+      const url = `api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+
+      console.log(url);
+    }
+  }, [consultar, ciudad, pais]);
 
   const ocultarTeclado = () => {
     Keyboard.dismiss();
@@ -24,7 +36,11 @@ const App = () => {
       <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
         <View style={styles.app}>
           <View style={styles.contenido}>
-            <Formulario busqueda={busqueda} guardarBusqueda={guardarBusqueda} />
+            <Formulario
+              busqueda={busqueda}
+              guardarBusqueda={guardarBusqueda}
+              guardarConsultar={guardarConsultar}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
