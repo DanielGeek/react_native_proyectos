@@ -1,9 +1,19 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import {StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import React, { useState } from 'react';
+import {Animated, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
 const Formulario = () => {
+
+  const [animacionboton] = useState(new Animated.Value(1));
+
+  const animacionEntrada = () => {
+    console.log('entrada');
+  };
+  const animacionSalida = () => {
+    console.log('salida');
+  };
+
   return (
   <>
     <View style={styles.formulario}>
@@ -31,7 +41,10 @@ const Formulario = () => {
         </Picker>
       </View>
 
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPressIn={ () => animacionEntrada()}
+        onPressOut={ () => animacionSalida()}
+      >
         <View
           style={styles.btnBuscar}
         >
