@@ -1,15 +1,28 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View, Text, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import Formulario from './componentes/Formulario';
 
 const App = () => {
+  const ocultarTeclado = () => {
+    Keyboard.dismiss();
+  };
+
   return (
     <>
-      <View style={styles.app}>
-        <View style={styles.contenido}>
-          <Formulario />
+      <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
+        <View style={styles.app}>
+          <View style={styles.contenido}>
+            <Formulario />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </>
   );
 };
