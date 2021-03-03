@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import {Animated, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import {Alert, Animated, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
 const Formulario = ({busqueda, guardarBusqueda}) => {
@@ -8,6 +8,21 @@ const Formulario = ({busqueda, guardarBusqueda}) => {
   const {pais, ciudad} = busqueda;
 
   const [animacionboton] = useState(new Animated.Value(1));
+
+  const consultarClima = () => {
+    if(pais.trim() === '' || ciudad.trim() === '') {
+      mostrarAlerta();
+      return;
+    }
+  };
+
+  const mostrarAlerta = () => {
+    Alert.alert(
+      'Error',
+      'Agrega una ciudad y país para la búsqueda',
+      [{ text: 'Entendido'}]
+    );
+  };
 
   const animacionEntrada = () => {
     Animated.spring(animacionboton, {
@@ -62,6 +77,7 @@ const Formulario = ({busqueda, guardarBusqueda}) => {
       <TouchableWithoutFeedback
         onPressIn={ () => animacionEntrada()}
         onPressOut={ () => animacionSalida()}
+        onPress={ () => consultarClima()}
       >
         <Animated.View
           style={[styles.btnBuscar, estiloAnimacion]}
