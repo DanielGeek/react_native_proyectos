@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -10,6 +10,11 @@ import {
 import Formulario from './componentes/Formulario';
 
 const App = () => {
+  const [busqueda, guardarBusqueda] = useState({
+    ciudad: '',
+    pais: '',
+  });
+
   const ocultarTeclado = () => {
     Keyboard.dismiss();
   };
@@ -19,7 +24,7 @@ const App = () => {
       <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
         <View style={styles.app}>
           <View style={styles.contenido}>
-            <Formulario />
+            <Formulario busqueda={busqueda} guardarBusqueda={guardarBusqueda} />
           </View>
         </View>
       </TouchableWithoutFeedback>
