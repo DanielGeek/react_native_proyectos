@@ -66,7 +66,7 @@ const Formulario = ({busqueda, guardarBusqueda, guardarConsultar}) => {
         >
           <Picker.Item label="-- Seleccione un país --" value="" />
           <Picker.Item label="Venezuela" value="VE" />
-          <Picker.Item label="Chile" value="CH" />
+          <Picker.Item label="Chile" value="CL" />
           <Picker.Item label="Estados Unidos" value="US" />
           <Picker.Item label="México" value="MX" />
           <Picker.Item label="Argentina" value="AR" />
