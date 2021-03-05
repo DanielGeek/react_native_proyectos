@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   Text,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 import Formulario from './componentes/Formulario';
 
@@ -15,17 +16,32 @@ const App = () => {
     pais: '',
   });
   const [consultar, guardarConsultar] = useState(false);
+  const [resultado, guardarResultado] = useState({});
 
   const {ciudad, pais} = busqueda;
 
   useEffect(() => {
-    if (consultar) {
-      const appId = 'apikey';
-      const url = `api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
-
-      console.log(url);
-    }
+    const consultarClima = async () => {
+      if (consultar) {
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+        try {
+          const respuesta = await fetch(url);
+          const resultado = await respuesta.json();
+          guardarResultado(resultado);
+          guardarConsultar(false);
+        } catch (error) {
+          mostrarAlerta();
+        }
+      }
+    };
+    consultarClima();
   }, [consultar, ciudad, pais]);
+
+  const mostrarAlerta = () => {
+    Alert.alert('Error', 'No hay resultados, intente con otra ciudad o país', [
+      {text: 'Entendido'},
+    ]);
+  };
 
   const ocultarTeclado = () => {
     Keyboard.dismiss();
