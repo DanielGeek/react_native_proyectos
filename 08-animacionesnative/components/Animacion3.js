@@ -14,7 +14,7 @@ const Animacion3 = () => {
         useNativeDriver: false,
       }
     ).start();
-  }, []);
+  }, [animacion]);
 
   return (
     <View>
