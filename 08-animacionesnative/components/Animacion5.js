@@ -14,7 +14,12 @@ const Animacion5 = () => {
   };
 
   const soltarBtn = () => {
-
+    Animated.spring(animacion, {
+      toValue: 1,
+      friction: 1, // más bajo, mayor rebote
+      tension: 100,
+      useNativeDriver: false,
+    }).start();
   };
 
   const estiloAnimacion = {
