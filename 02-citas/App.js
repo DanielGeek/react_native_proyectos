@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { Cita } from './componentes/Cita';
 import { Formulario } from './componentes/Formulario';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const App = () => {
   const [mostrarForm, guardarMostrarForm] = useState(false);
 
@@ -36,6 +36,15 @@ const App = () => {
     Keyboard.dismiss();
   };
 
+  // ALmacenar las citas en storage
+  const guardarCitasStorage = async (citasJSON) => {
+    try {
+      await AsyncStorage.setItem('citas', citasJSON);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => cerrarTeclado()}>
       <View style={styles.contenedor}>
@@ -55,6 +64,7 @@ const App = () => {
                 citas={citas}
                 setCitas={setCitas}
                 guardarMostrarForm={guardarMostrarForm}
+                guardarCitasStorage={guardarCitasStorage}
               />
             </>
           ) : (
