@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Keyboard,
@@ -18,6 +18,21 @@ const App = () => {
 
   // Definir el state de citas
   const [citas, setCitas] = useState([]);
+
+  useEffect(() => {
+    const obtenerCitasStorage = async () => {
+      try {
+        const citasStorage = await AsyncStorage.getItem('citas');
+        if(citasStorage) {
+          setCitas(JSON.parse(citasStorage));
+        }
+        console.log(citasStorage);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obtenerCitasStorage();
+  }, []);
 
   // Elimina los pacientes del state
   const eliminarPaciente = id => {
