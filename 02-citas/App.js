@@ -36,9 +36,9 @@ const App = () => {
 
   // Elimina los pacientes del state
   const eliminarPaciente = id => {
-    setCitas((citasActuales) => {
-      return citasActuales.filter(cita => cita.id !== id);
-    });
+    const citasFiltradas = citas.filter(cita => cita.id !== id);
+    setCitas(citasFiltradas);
+    guardarCitasStorage(JSON.stringify(citasFiltradas));
   };
 
   // Muestra u oculta el Formulario
