@@ -2,18 +2,20 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
-const Nosotros = ({navigation}) => {
+const Nosotros = ({navigation, route}) => {
+
+  const { clientId } = route.params;
 
   const volver = () => {
-    navigation.navigate('Inicio');
+    // navigation.navigate('Inicio');
     // navigation.goBack();
-    // navigation.push('Inicio');
+    navigation.push('Inicio');
 
   };
 
   return (
     <View style={styles.contenedor}>
-      <Text>Nosotros</Text>
+      <Text>{clientId}</Text>
       <Button
         title="Volver"
         onPress={() => volver() }
