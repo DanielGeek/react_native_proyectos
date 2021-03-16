@@ -8,7 +8,7 @@ const BarraSuperior = ({navigation, route}) => {
     navigation.navigate('NuevoCliente');
   };
 
-  return <Button icon="add-circle-outline" color="#FFF" onPress={() => handlePress()}>Cliente</Button>;
+  return <Button icon="plus-circle" color="#FFF" onPress={() => handlePress()}>Cliente</Button>;
 };
 
 export default BarraSuperior;
