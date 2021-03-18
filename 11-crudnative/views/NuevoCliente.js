@@ -5,7 +5,7 @@ import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-na
 import globalStyles from '../styles/global';
 import axios from 'axios';
 
-const NuevoCliente = () => {
+const NuevoCliente = ({navigation}) => {
 
   // campos formulario
   const [nombre, setNombre] = useState('');
@@ -39,8 +39,13 @@ const NuevoCliente = () => {
     }
 
     // redireccionar
+    navigation.navigate('Inicio');
 
     // limpiar el form (opcional)
+    setNombre('');
+    setTelefono('');
+    setCorreo('');
+    setEmpresa('');
   };
 
 
