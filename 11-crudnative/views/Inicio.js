@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
-import {Text} from 'react-native';
+import {FlatList, View} from 'react-native';
 import axios from 'axios';
+import {List} from 'react-native-paper';
 
 const Inicio = () => {
 
@@ -21,7 +22,19 @@ const Inicio = () => {
     obtenerClientesApi();
   }, []);
 
-  return <Text>Desde Inicio</Text>;
+  return (
+  <View>
+    <FlatList
+      data={clientes}
+      keyExtractor={cliente => (cliente.id).toString()}
+      renderItem={({item}) => (
+        <List.Item
+          title={item.nombre}
+          description={item.empresa}
+        />
+      )}
+    />
+  </View>);
 };
 
 export default Inicio;
