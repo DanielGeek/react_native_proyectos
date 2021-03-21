@@ -5,7 +5,9 @@ import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-na
 import globalStyles from '../styles/global';
 import axios from 'axios';
 
-const NuevoCliente = ({navigation}) => {
+const NuevoCliente = ({navigation, route}) => {
+
+  const { setConsultarAPI } = route.params;
 
   // campos formulario
   const [nombre, setNombre] = useState('');
@@ -28,7 +30,7 @@ const NuevoCliente = ({navigation}) => {
 
     //guardar el cliente en la API
     try {
-      if(Platform.OS === 'ios') {
+      if (Platform.OS === 'ios') {
         await axios.post('http://localhost:3000/clientes', cliente);
       } else {
         // para android
@@ -46,6 +48,9 @@ const NuevoCliente = ({navigation}) => {
     setTelefono('');
     setCorreo('');
     setEmpresa('');
+
+    // cambiar a true para traernos el nuevo cliente
+    setConsultarAPI(true);
   };
 
 
