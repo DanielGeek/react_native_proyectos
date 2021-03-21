@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
+import axios from 'axios';
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Headline, Text, Subheading, Button } from 'react-native-paper';
 import globalStyles from '../styles/global';
 
-const DetallesCliente = ({route}) => {
-  const {nombre, telefono, correo, empresa } = route.params.item;
+const DetallesCliente = ({navigation, route}) => {
+  const {setConsultarAPI} = route.params;
+  const {nombre, telefono, correo, empresa, id } = route.params.item;
 
   const mostrarConfirmacion = () => {
     Alert.alert(
@@ -18,8 +20,20 @@ const DetallesCliente = ({route}) => {
     );
   };
 
-  const eliminarContacto = () => {
-    console.log('eliminado....');
+  const eliminarContacto = async () => {
+    const url = `http://10.0.2.2:3000/clientes/${id}`;
+    // console.log(url);
+    try {
+      await axios.delete(url);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // Redireccionar
+    navigation.navigate('Inicio');
+
+    // Volver a consultar la api
+    setConsultarAPI(true);
   };
 
   return (
