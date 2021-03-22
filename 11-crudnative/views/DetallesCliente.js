@@ -1,11 +1,19 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 import React from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Platform } from 'react-native';
 import { Headline, Text, Subheading, Button, FAB } from 'react-native-paper';
 import globalStyles from '../styles/global';
+import {API_URL_IOS, API_URL_ANDROID} from '@env';
 
 const DetallesCliente = ({navigation, route}) => {
+  let URL_API = '';
+  if (Platform.OS === 'ios') {
+    URL_API = API_URL_IOS;
+  } else {
+    // para android
+    URL_API = API_URL_ANDROID;
+  }
   const {setConsultarAPI} = route.params;
   const {nombre, telefono, correo, empresa, id } = route.params.item;
 
@@ -21,7 +29,7 @@ const DetallesCliente = ({navigation, route}) => {
   };
 
   const eliminarContacto = async () => {
-    const url = `http://10.0.2.2:3000/clientes/${id}`;
+    const url = `${URL_API}/clientes/${id}`;
     // console.log(url);
     try {
       await axios.delete(url);

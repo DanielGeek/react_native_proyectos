@@ -1,11 +1,32 @@
 {
   "clientes": [
     {
-      "nombre": "Daniel",
+      "nombre": "Daniel actualizado",
       "telefono": "123123123",
-      "empresa": "Zerviz",
+      "empresa": "Zer",
       "correo": "correo@gmail.com",
       "id": 1
+    },
+    {
+      "nombre": "Elias",
+      "telefono": "333212123",
+      "empresa": "xyz",
+      "correo": "correo@gmail.com",
+      "id": 2
+    },
+    {
+      "nombre": "Jessica",
+      "telefono": "222111111",
+      "empresa": "xyz",
+      "correo": "correo2@gmail.com",
+      "id": 3
+    },
+    {
+      "nombre": "Eze",
+      "telefono": "111222333",
+      "empresa": "xyz2",
+      "correo": "correo@gmail.com",
+      "id": 4
     }
   ]
 }

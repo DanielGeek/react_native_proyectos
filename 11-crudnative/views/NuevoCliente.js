@@ -5,10 +5,17 @@ import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-na
 import globalStyles from '../styles/global';
 import axios from 'axios';
 import { useEffect } from 'react/cjs/react.development';
+import {API_URL_IOS, API_URL_ANDROID} from '@env';
 
 const NuevoCliente = ({navigation, route}) => {
-  console.log(route.params);
   const { setConsultarAPI } = route.params;
+  let URL_API = '';
+  if (Platform.OS === 'ios') {
+    URL_API = API_URL_IOS;
+  } else {
+    // para android
+    URL_API = API_URL_ANDROID;
+  }
 
   // campos formulario
   const [nombre, setNombre] = useState('');
@@ -40,16 +47,25 @@ const NuevoCliente = ({navigation, route}) => {
     const cliente = {nombre, telefono, empresa, correo};
     console.log(cliente);
 
-    //guardar el cliente en la API
-    try {
-      if (Platform.OS === 'ios') {
-        await axios.post('http://localhost:3000/clientes', cliente);
-      } else {
-        // para android
-        await axios.post('http://10.0.2.2:3000/clientes', cliente);
+    // Si estamos editando o creando un nuevo cliente
+    if (route.params.cliente) {
+        const { id } = route.params.cliente;
+        cliente.id = id;
+        const url = `${URL_API}/clientes/${id}`;
+
+        try {
+          await axios.put(url, cliente);
+        } catch (error) {
+          console.log(error);
+        }
+
+    } else {
+       //guardar el cliente en la API
+      try {
+          await axios.post(`${URL_API}/clientes`, cliente);
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
 
     // redireccionar
