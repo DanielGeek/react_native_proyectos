@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
-import { Headline, Text, Subheading, Button } from 'react-native-paper';
+import { Headline, Text, Subheading, Button, FAB } from 'react-native-paper';
 import globalStyles from '../styles/global';
 
 const DetallesCliente = ({navigation, route}) => {
@@ -51,6 +51,12 @@ const DetallesCliente = ({navigation, route}) => {
           >
           Eliminar Cliente
       </Button>
+
+      <FAB
+      icon="pencil"
+      style={globalStyles.fab}
+      onPress={() => navigation.navigate('NuevoCliente', { cliente: route.params.item, setConsultarAPI}) }
+      />
     </View>
   );
 };
