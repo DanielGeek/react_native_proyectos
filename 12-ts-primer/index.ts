@@ -18,30 +18,37 @@
 
 // add(1, 2);
 
-type Shape = {
-  color: string;
-  size?: number;
+// type Shape = {
+//   color: string;
+//   size?: number;
+// }
+
+// function newShape(options: Shape): void {
+//   console.log(options.color);
+//   console.log(options.size?.toFixed());
+// }
+
+// newShape({color: "123"});
+
+// type TriangleTypes = "equilateral" | "isosceles" | "right-angled";
+
+// type Triangle = {
+//   type: TriangleTypes;
+//   onCreate: (type: TriangleTypes) => void;
+// } & Shape;
+
+// function newTriangle(options: Triangle) {
+//   console.log(options);
+//   options.onCreate(options.type);
+// }
+
+// newTriangle({color: "red", type: "equilateral", onCreate: (type) => {
+//   console.log(type === "equilateral")
+// }})
+
+function generic<T>(arg: T): T {
+  return arg;
 }
 
-function newShape(options: Shape): void {
-  console.log(options.color);
-  console.log(options.size?.toFixed());
-}
-
-newShape({color: "123"});
-
-type TriangleTypes = "equilateral" | "isosceles" | "right-angled";
-
-type Triangle = {
-  type: TriangleTypes;
-  onCreate: (type: TriangleTypes) => void;
-} & Shape;
-
-function newTriangle(options: Triangle) {
-  console.log(options);
-  options.onCreate(options.type);
-}
-
-newTriangle({color: "red", type: "equilateral", onCreate: (type) => {
-  console.log(type === "equilateral")
-}})
+// const [loading, setLoading] = useState<boolean>(false);
+// setLoading("asas")
