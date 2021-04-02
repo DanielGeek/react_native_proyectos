@@ -9,8 +9,7 @@
         "typecheck": "tsc",
         "format:check": "npx prettier --check \"**/*.{js,jsx,json,ts,tsx}\"",
         "format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
-        "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-        "prepare": "husky install"
+        "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
     },
     "husky": {
         "hooks": {
