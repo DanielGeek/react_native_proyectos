@@ -9,12 +9,14 @@
         "typecheck": "tsc",
         "format:check": "npx prettier --check \"**/*.{js,jsx,json,ts,tsx}\"",
         "format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
-        "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
+        "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+        "prepare": "husky install"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run typecheck && npm run format:check && npm run lint"
-        }
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx}": "eslint",
+        "**/*.{js,jsx,json,ts,tsx}": "prettier --write",
+        "*.js": "eslint --cache --fix",
+        "*.{js,jsx,json,ts,tsx}": "prettier --write"
     },
     "dependencies": {
         "expo": "~40.0.0",
@@ -35,6 +37,7 @@
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-react": "^7.23.1",
         "husky": "^6.0.0",
+        "lint-staged": "^10.5.4",
         "prettier": "2.2.1",
         "typescript": "~4.0.0"
     },
