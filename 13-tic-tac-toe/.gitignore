@@ -11,3 +11,4 @@ web-build/
 
 # macOS
 .DS_Store
+../07-clima_app/App.js
