@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
 import { useFonts, DeliusUnicase_400Regular, DeliusUnicase_700Bold } from "@expo-google-fonts/delius-unicase";
 import { AppLoading } from 'expo';
+import { Text } from "@components";
 
 export default function App() {
     const [fontLoaded] = useFonts({
@@ -12,9 +13,14 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <Text style={{ fontSize: 25,
-                fontFamily: "DeliusUnicase_400Regular"}}
-                >Hello World</Text>
+            <Text
+                onPress={() => {
+                    alert(true);
+                }}
+                style={{ fontSize: 25 }}
+            >
+                Hello World <Text weight="400">sasas</Text>
+            </Text>
         </View>
     );
 }
