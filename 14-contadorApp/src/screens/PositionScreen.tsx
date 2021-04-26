@@ -8,7 +8,7 @@ export const PositionScreen = () => {
       <View style={styles.cajaMorada} />
       <View style={styles.cajaNaranja} />
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
