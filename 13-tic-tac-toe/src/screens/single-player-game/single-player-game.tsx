@@ -1,14 +1,14 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { ReactElement } from 'react'
+import { Text, SafeAreaView } from 'react-native'
 import { GradientBackground } from '@components';
 import styles from "./single-player-game.styles";
 
-export default function Game() {
+export default function Game(): ReactElement {
   return (
     <GradientBackground>
-      <View style={styles.container}>
-        <Text>Game</Text>
-      </View>
+      <SafeAreaView style={styles.container}>
+        <Text style={{ color: "#fff" }}>Game</Text>
+      </SafeAreaView>
     </GradientBackground>
   )
 }
