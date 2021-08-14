@@ -9,7 +9,10 @@ export default function Game(): ReactElement {
     <GradientBackground>
       <SafeAreaView style={styles.container}>
           <Board
-              state={['x', 'o', null, 'x', 'o', null, 'x', 'o', null]}
+              onCellPressed={index => {
+                alert(index);
+              }}
+              state={['o', 'o', 'x', 'x', 'o', null, 'x', 'o', null]}
               size={300}
           />
       </SafeAreaView>
