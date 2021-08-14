@@ -13,7 +13,7 @@ export default function Home({ navigation }: HomeProps): ReactElement {
       return (
       <GradientBackground>
             <ScrollView contentContainerStyle={styles.container}>
-                  <Image style={styles.logo} source={require("@assets/logo.jpg")} />
+                  <Image style={styles.logo} source={require("@assets/tic-tac-toe.jpg")} />
                   <View style={styles.buttons}>
                         <Button
                               onPress={() => {
