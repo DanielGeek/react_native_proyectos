@@ -4,13 +4,15 @@ import { GradientBackground } from '@components';
 import styles from "./single-player-game.styles";
 import { Board } from '@components';
 import { printFormattedBoard, isEmpty, isFull, getAvailableMoves, BoardState } from "@utils";
+import { isTerminal } from './../../utils/board';
 
 export default function Game(): ReactElement {
   const b: BoardState = ['o', 'o', 'x', 'x', 'o', null, 'x', 'x', null];
-  // printFormattedBoard(b);
-  console.log(isEmpty(b));
-  console.log(isFull(b));
-  console.log(getAvailableMoves(b));
+  printFormattedBoard(b);
+  console.log(isTerminal(b));
+  // console.log(isEmpty(b));
+  // console.log(isFull(b));
+  // console.log(getAvailableMoves(b));
   return (
     <GradientBackground>
       <SafeAreaView style={styles.container}>
