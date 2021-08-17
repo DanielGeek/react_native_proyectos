@@ -7,7 +7,12 @@ import { printFormattedBoard, isEmpty, isFull, getAvailableMoves, BoardState } f
 import { isTerminal } from './../../utils/board';
 
 export default function Game(): ReactElement {
-  const b: BoardState = ['o', 'o', 'x', 'x', 'o', null, 'x', 'x', null];
+  // prettier-ignore
+  const b: BoardState = [
+    'x', 'x', 'o',
+    'o', 'x', 'x',
+    'x', 'o', 'o'
+  ];
   printFormattedBoard(b);
   console.log(isTerminal(b));
   // console.log(isEmpty(b));
