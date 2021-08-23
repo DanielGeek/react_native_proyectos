@@ -27,4 +27,19 @@ export const getBestMove = (state: BoardState, maximizing: boolean, depth = 0): 
     console.log("best", best);
     return best;
   }
+
+  if(!maximizing) {
+    let best = 100;
+    getAvailableMoves(state).forEach(index => {
+      const child: BoardState = [...state];
+      child[index] = "o";
+      console.log(`Child board (x turn) (depth: ${depth})`);
+      printFormattedBoard(child);
+      const childValue = getBestMove(child, true, depth + 1);
+      console.log("childValue", childValue);
+      best = Math.min(best, childValue);
+    })
+    console.log("best", best);
+    return best;
+  }
 };

@@ -3,16 +3,17 @@ import { SafeAreaView } from 'react-native'
 import { GradientBackground } from '@components';
 import styles from "./single-player-game.styles";
 import { Board } from '@components';
-import { printFormattedBoard, isEmpty, isFull, getAvailableMoves, BoardState } from "@utils";
+import { printFormattedBoard, isEmpty, isFull, getAvailableMoves, BoardState, getBestMove } from "@utils";
 import { isTerminal } from './../../utils/board';
 
 export default function Game(): ReactElement {
   // prettier-ignore
   const [state, setstate] = useState<BoardState>([
-    null, null, null,
-    null, null, null,
-    null, null, null
+    null, "x", null,
+    "o", null, "x",
+    "o", "o", "x"
   ])
+  console.log("getBestMove", getBestMove(state, true));
   const handleOnCellPressed = (cell: number): void => {
     const stateCopy: BoardState = [ ...state];
     if (stateCopy[cell] || isTerminal(stateCopy))
