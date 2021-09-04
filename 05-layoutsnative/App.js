@@ -13,7 +13,7 @@ const App = () => {
         </View>
 
         <View style={styles.contenedor}>
-          <Text style={styles.titulo}>Qué hacer en Paris</Text>
+          <Text style={styles.titulo}>What to do in Paris</Text>
           <ScrollView horizontal>
             <View>
               <Image
@@ -47,7 +47,7 @@ const App = () => {
             </View>
           </ScrollView>
 
-          <Text style={styles.titulo}>Los Mejores Alojamientos</Text>
+          <Text style={styles.titulo}>The Best Accommodations</Text>
           <View>
             <View>
               <Image
@@ -69,14 +69,14 @@ const App = () => {
             </View>
           </View>
 
-          <Text style={styles.titulo}>Hospedajes en LA</Text>
+          <Text style={styles.titulo}>Accommodations in LA</Text>
           <View style={styles.listado}>
             <View style={styles.listadoItem}>
               <Image
                 style={styles.mejores}
                 source={require('./assets/img/hospedaje1.jpg')}
               />
-              <Text>Casa 3 Recamaras</Text>
+              <Text>House with 3 Bedrooms</Text>
             </View>
             <View style={styles.listadoItem}>
               <Image
