@@ -5,7 +5,7 @@ import styles from "./single-player-game.styles";
 import { Board } from '@components';
 import { isEmpty, BoardState, isTerminal, getBestMove } from "@utils";
 import { Audio } from 'expo-av';
-import * as Haptics from 'expo-haptics';
+// import * as Haptics from 'expo-haptics';
 
 export default function Game(): ReactElement {
   // prettier-ignore
@@ -30,7 +30,7 @@ export default function Game(): ReactElement {
       symbol === "x"
           ? popSoundRef.current?.replayAsync()
           : pop2SoundRef.current?.replayAsync();
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     } catch (error) {
       console.log(error);
     }
