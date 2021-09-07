@@ -2,8 +2,6 @@
 
 ## _Framework: React native_
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 ## Features
 - React Native Client
 - flex-box
@@ -12,6 +10,26 @@
   - Image
   - Text
   - ScrollView
+
+## Installation
+
+This app use Node.js v16.0.0+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+cd 05-layoutsnative
+npm i
+ start proyect android
+ npx react-native run-android
+ start proyect IOS
+  npx react-native run-ios
+```
+## License
+
+MIT
+
+**Free Software, Hell Yeah!**
 
 ![Screenshot](assets/screenshots/home.png)
 ![Screenshot](assets/screenshots/to_do.png)
