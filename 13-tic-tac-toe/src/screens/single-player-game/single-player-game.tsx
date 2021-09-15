@@ -53,30 +53,15 @@ export default function Game(): ReactElement {
       if(gameResult) {
         const winner = getWinner(gameResult.winner);
         if(winner === "HUMAN") {
-          try {
-            winSoundRef.current?.replayAsync();
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          } catch (error) {
-            console.log(error);
-          }
-          alert("You Won!");
+            playSound("win");
+            alert("You Won!");
         }
         if(winner === "BOT") {
-          try {
-            lossSoundRef.current?.replayAsync();
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          } catch (error) {
-            console.log(error);
-          }
+          playSound("loss");
           alert("You Lost!");
         }
         if(winner === "DRAW") {
-          try {
-            drawSoundRef.current?.replayAsync();
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-          } catch (error) {
-            console.log(error);
-          }
+          playSound("draw");
           alert("It's a Draw!");
         }
       } else {
