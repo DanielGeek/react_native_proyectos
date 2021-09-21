@@ -46,8 +46,8 @@ export default function Board( { state, disabled, size, gameResult, onCellPresse
         )
       })}
       {
-        gameResult &&
-          <BoardLine size={size} gameResult={gameResult} />
+        true &&
+          <BoardLine size={size} gameResult={{ winner: "o", diagonal: "MAIN", direction: "D" }} />
       }
     </View>
   )
