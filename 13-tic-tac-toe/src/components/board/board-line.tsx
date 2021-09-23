@@ -81,7 +81,10 @@ export default function BoardLine({size, gameResult}: BoardLineProps): ReactElem
                   }),
                   transform: [
                     {
-                      translateY: -(diagonalHeight - size) / 2
+                      translateY: animationRef.current.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [size / 2,  - (diagonalHeight - size) / 2]
+                      })
                     },
                     {
                       rotateZ: gameResult.diagonal === "MAIN" ? "-45deg" : "45deg"
