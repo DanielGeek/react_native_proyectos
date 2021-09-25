@@ -3,6 +3,8 @@ import { View, TouchableOpacity } from 'react-native';
 import Text from "../text/text";
 import { BoardState, BoardResult } from '@utils';
 import BoardLine from "./board-line";
+import styles from "./board.styles";
+import styles from '../button/button.styles';
 
 type BoardProps = {
   state: BoardState;
@@ -15,39 +17,35 @@ type BoardProps = {
 export default function Board( { state, disabled, size, gameResult, onCellPressed }: BoardProps ): ReactElement {
   return (
     <View
-      style={{
-        width: size,
-        height: size,
-        backgroundColor: 'green',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
-      }}
+      style={[
+        styles.board,
+        {
+          width: size,
+          height: size
+      }
+    ]}
     >
       {state.map((cell, index) => {
         return (
           <TouchableOpacity
             disabled={cell !== null || disabled}
             onPress={() => onCellPressed && onCellPressed(index)}
-            style={{
-              width: "33.33333%",
-              height: "33.33333%",
-              backgroundColor: "#fff",
-              borderWidth: 1,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
+            style={[styles.cell, styles[`cell${index}` as "cell"]]}
             key={index}>
             <Text
-              style={{
-                fontSize: size / 8
-              }}
+              style={[
+                styles.cellText,
+                {
+                  fontSize: size / 7
+                }
+            ]}
             >{cell}</Text>
           </TouchableOpacity>
         )
       })}
       {
-        true &&
-          <BoardLine size={size} gameResult={{ winner: "o", diagonal: "MAIN", direction: "D" }} />
+        gameResult &&
+          <BoardLine size={size} gameResult={gameResult} />
       }
     </View>
   )
