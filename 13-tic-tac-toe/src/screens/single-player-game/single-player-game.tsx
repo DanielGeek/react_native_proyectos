@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { SafeAreaView, View, Dimensions } from 'react-native'
 import { GradientBackground, Text } from '@components';
 import styles from "./single-player-game.styles";
-import { Board } from '@components';
+import { Board, Button } from '@components';
 import { isEmpty, BoardState, isTerminal, getBestMove, Cell, useSounds } from "@utils";
 
 const SCREEN_WIDTH = Dimensions.get("screen").width;
@@ -115,6 +115,11 @@ export default function Game(): ReactElement {
               gameResult={gameResult}
               size={SCREEN_WIDTH - 60}
           />
+
+          <View style={styles.modal}>
+              <Text style={styles.modalText}>You Won</Text>
+              <Button title="Play Again" />
+          </View>
       </SafeAreaView>
     </GradientBackground>
   )
