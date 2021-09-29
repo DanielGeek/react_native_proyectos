@@ -3,8 +3,8 @@ import { View, TouchableOpacity } from 'react-native';
 import Text from "../text/text";
 import { BoardState, BoardResult } from '@utils';
 import BoardLine from "./board-line";
-import styles from "./board.styles";
-import styles from '../button/button.styles';
+// import styles from "./board.styles";
+// import styles from '../button/button.styles';
 
 type BoardProps = {
   state: BoardState;
