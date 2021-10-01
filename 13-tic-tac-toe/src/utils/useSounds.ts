@@ -25,16 +25,17 @@ export default function useSounds(): (sound: SoundType) => void {
       switch (sound) {
         case "pop1":
         case "pop2":
+          // TODO: descoment this comments Haptics
           // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           break;
         case "win":
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          // Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           break;
         case "loss":
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+          // Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           break;
         case "draw":
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+          // Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
           break;
         default:
           break;

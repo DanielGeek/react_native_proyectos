@@ -27,13 +27,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 5
   },
   resultsTitle: {
-    color: colors.lightGreen,
-    // color: colors.darkPurple,
+    color: colors.darkPurle,
     fontSize: 14
   },
   resultsCount: {
-    color: colors.lightGreen,
-    // color: colors.darkPurple,
+    color: colors.darkPurle,
     fontSize: 20
   },
   modal: {
