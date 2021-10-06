@@ -21,7 +21,7 @@ type SettingsType = {
 
 const defaultSettings: SettingsType = {
   difficulty: "-1",
-  haptics: false,
+  haptics: true,
   sounds: true
 };
 
@@ -51,8 +51,19 @@ export default function Settings(): ReactElement | null {
           <View style={styles.choices}>
             {Object.keys(difficulties).map(level => {
               return (
-                <TouchableOpacity style={styles.choice} key={level}>
-                  <Text style={styles.choiceText}>{difficulties[level as keyof typeof difficulties]}</Text>
+                <TouchableOpacity style={[
+                      styles.choice,
+                      {backgroundColor: settings.difficulty === level
+                        ? colors.lightPurple
+                        : colors.lightGreen }]}
+                        key={level}>
+                  <Text style={[
+                    styles.choiceText,
+                    {color: settings.difficulty === level
+                      ? colors.lightGreen
+                      : colors.darkPurple}]}>
+                        {difficulties[level as keyof typeof difficulties]}
+                  </Text>
                 </TouchableOpacity>
               )
             })}
