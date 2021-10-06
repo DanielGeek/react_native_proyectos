@@ -1,17 +1,48 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { ScrollView, View, TouchableOpacity, Switch } from 'react-native';
 import { GradientBackground, Text } from '@components';
 import styles from "./settings.styles";
 import { colors } from '@utils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Settings(): ReactElement {
-  const [state, setState] = useState(false)
-  const difficulties = {
-    "1": "Beginner",
-    "3": "Intermediate",
-    "4": "Hard",
-    "-1": "Impossible"
+
+const difficulties = {
+  "1": "Beginner",
+  "3": "Intermediate",
+  "4": "Hard",
+  "-1": "Impossible"
+};
+
+type SettingsType = {
+  difficulty: keyof typeof difficulties;
+  haptics: boolean;
+  sounds: boolean;
+};
+
+const defaultSettings: SettingsType = {
+  difficulty: "-1",
+  haptics: false,
+  sounds: true
+};
+
+export default function Settings(): ReactElement | null {
+  const [settings, setSettings] = useState<SettingsType | null>(null);
+
+  const loadSettings = async () => {
+    try {
+      const settings = await AsyncStorage.getItem("@settings");
+      settings !== null ? setSettings(JSON.parse(settings)) : setSettings(defaultSettings);
+    } catch (error) {
+      setSettings(defaultSettings);
+    }
   }
+
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+  if (!settings) return null;
+
   return (
     <GradientBackground>
       <ScrollView contentContainerStyle={styles.container}>
@@ -37,10 +68,10 @@ export default function Settings(): ReactElement {
               }}
               thumbColor={colors.lightGreen}
               ios_backgroundColor={colors.purple}
-              value={state}
-              onValueChange={() => {
-                setState(!state);
-              }}
+              value={settings.sounds}
+              // onValueChange={() => {
+              //   setState(!state);
+              // }}
             />
         </View>
 
@@ -53,10 +84,10 @@ export default function Settings(): ReactElement {
               }}
               thumbColor={colors.lightGreen}
               ios_backgroundColor={colors.purple}
-              value={state}
-              onValueChange={() => {
-                setState(!state);
-              }}
+              value={settings.haptics}
+              // onValueChange={() => {
+              //   setState(!state);
+              // }}
             />
         </View>
       </ScrollView>
