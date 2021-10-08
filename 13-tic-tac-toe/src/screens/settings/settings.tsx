@@ -28,7 +28,7 @@ const defaultSettings: SettingsType = {
 export default function Settings(): ReactElement | null {
   const [settings, setSettings] = useState<SettingsType | null>(null);
 
-  const saveSetting = async (setting: keyof SettingsType, value) => {
+  const saveSetting = async <T extends keyof SettingsType>(setting: T, value: SettingsType[T]) => {
     try {
       const oldSetting = settings ? settings : defaultSettings;
       const newSettings = { ...oldSetting, [setting]: value};
@@ -65,7 +65,7 @@ export default function Settings(): ReactElement | null {
               return (
                 <TouchableOpacity
                     onPress={() => {
-                      saveSetting("difficulty", level)
+                      saveSetting("difficulty", level as keyof typeof difficulties)
                     }}
                   style={[
                       styles.choice,
