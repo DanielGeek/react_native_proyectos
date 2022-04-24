@@ -1,32 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { reqResApi } from '../api/reqRes';
-import { ReqResList, User } from '../interfaces/reqRes';
+
+import { User } from '../interfaces/reqRes';
+import { useUsers } from '../hooks/useUsers';
 
 export const Users = () => {
 
-  const [users, setUsers] = useState<User[]>([]);
-
-  const pageRef = useRef(0);
-
-  useEffect(() => {
-    // call API
-    uploadUsers();
-  }, [])
-
-  const uploadUsers = async() => {
-    const resp = await reqResApi.get<ReqResList>('/users', {
-      params: {
-        page: pageRef.current
-      }
-    })
-
-    if( resp.data.data.length > 0 ){
-      setUsers( resp.data.data);
-      pageRef.current++;
-    } else {
-      alert('there are no more records');
-    }
-  }
+  const { users, uploadUsers } = useUsers();
 
   const renderItem = ({ id, first_name, last_name, email, avatar }: User ) => {
     return (
@@ -64,6 +42,15 @@ export const Users = () => {
           }
         </tbody>
       </table>
+
+      <button
+        className='btn btn-primary'
+        onClick={ uploadUsers }
+      >
+        Previous
+      </button>
+
+      &nbsp;
 
       <button
         className='btn btn-primary'
