@@ -4,7 +4,7 @@ import { useUsers } from '../hooks/useUsers';
 
 export const Users = () => {
 
-  const { users, uploadUsers } = useUsers();
+  const { users, previousPage, nextPage } = useUsers();
 
   const renderItem = ({ id, first_name, last_name, email, avatar }: User ) => {
     return (
@@ -45,7 +45,7 @@ export const Users = () => {
 
       <button
         className='btn btn-primary'
-        onClick={ uploadUsers }
+        onClick={ previousPage }
       >
         Previous
       </button>
@@ -54,7 +54,7 @@ export const Users = () => {
 
       <button
         className='btn btn-primary'
-        onClick={ uploadUsers }
+        onClick={ nextPage }
       >
         Next
       </button>

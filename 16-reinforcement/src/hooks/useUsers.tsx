@@ -21,14 +21,27 @@ export const useUsers = () => {
 
     if( resp.data.data.length > 0 ){
       setUsers( resp.data.data);
-      pageRef.current++;
     } else {
+      pageRef.current--;
       alert('there are no more records');
+    }
+  }
+
+  const nextPage = () => {
+    pageRef.current++;
+    uploadUsers();
+  }
+
+  const previousPage = () => {
+    if ( pageRef.current > 1 ) {
+      pageRef.current --;
+      uploadUsers();
     }
   }
 
   return {
     users,
-    uploadUsers
+    nextPage,
+    previousPage,
   }
 }
