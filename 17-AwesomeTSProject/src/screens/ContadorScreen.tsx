@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 export const ContadorScreen = () => {
 
@@ -21,10 +21,16 @@ export const ContadorScreen = () => {
         Contador: { contador }
       </Text>
 
-      <Button
-        title="Click"
-        onPress={ () => setContador( contador + 1) }
-      />
+      <TouchableOpacity
+        onPress={() => setContador( contador + 1)}
+      >
+        <View style={{
+          backgroundColor: 'red',
+          borderRadius: 100,
+        }}>
+          <Text>+1</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
