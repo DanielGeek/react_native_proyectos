@@ -10,11 +10,17 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/native": "^6.0.10",
+    "@react-navigation/stack": "^6.2.1",
+    "install": "^0.13.0",
+    "npm": "^8.12.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-gesture-handler": "^2.4.2",
     "react-native-safe-area-context": "^4.3.1",
-    "react-native-screens": "^3.13.1"
+    "react-native-screens": "^3.13.1",
+    "y": "^0.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
