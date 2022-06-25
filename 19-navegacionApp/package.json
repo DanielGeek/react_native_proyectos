@@ -15,6 +15,7 @@
     "@react-navigation/drawer": "^6.4.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "expo-blur": "^11.1.0",
     "install": "^0.13.0",
     "npm": "^8.12.2",
     "react": "17.0.2",
