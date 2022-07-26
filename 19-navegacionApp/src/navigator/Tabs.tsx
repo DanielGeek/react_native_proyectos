@@ -11,6 +11,7 @@ import { StackNavigator } from './StackNavigator';
 import { colores } from '../theme/appTheme';
 import { BlurView } from 'expo-blur';
 import { TopTabNavigator } from './TopTabNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export const Tabs = () => {
@@ -48,18 +49,18 @@ const TabsAndroid = () => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'bandage-outline';
               break;
 
             case 'Tab2Screen':
-              iconName = 'T2';
+              iconName = 'basketball-outline';
               break;
 
             case 'StackNavigator':
-              iconName = 'St';
+              iconName = 'bookmarks-outline';
               break;
             }
-          return <Text style={{ color }}>{ iconName }</Text>;
+          return <Icon name={ iconName } size={ 20 } color={ color } />
         },
       })}
     >
@@ -97,18 +98,18 @@ const TabsIOS = () => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'bandage-outline';
               break;
 
             case 'Tab2Screen':
-              iconName = 'T2';
+              iconName = 'basketball-outline';
               break;
 
             case 'StackNavigator':
-              iconName = 'St';
+              iconName = 'bookmarks-outline';
               break;
             }
-          return <Text style={{ color }}>{ iconName }</Text>;
+          return <Icon name={ iconName } size={ 20 } color={ color } />
         },
       })}
     >
