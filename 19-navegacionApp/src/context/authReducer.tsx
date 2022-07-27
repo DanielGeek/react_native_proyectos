@@ -1,5 +1,18 @@
 import { AuthState } from './AuthContext';
 
-export const authReducer = ( state: AuthState, action: any ): AuthState => {
+type AuthAction = { type: 'signIn' };
 
+export const authReducer = ( state: AuthState, action: AuthAction ): AuthState => {
+
+  switch (action.type) {
+    case 'signIn':
+      return {
+        ...state,
+        isLoggedIn: true,
+        username: 'no-username-yet',
+      };
+
+    default:
+      return state;
+  }
 }
