@@ -32,6 +32,7 @@ export const HomeScreen = () => {
               sliderWidth={ windowWidth }
               itemWidth={ 300 }
           />
+        </View>
 
         {/* populars movies */}
         <View style={{ backgroundColor: 'red', height: 260 }}>
