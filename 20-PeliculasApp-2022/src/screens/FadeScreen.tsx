@@ -1,22 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useRef } from 'react';
+import React from 'react';
 import { Animated, Button, View } from 'react-native';
+import { useFade } from '../hooks/useFade';
 
 export const FadeScreen = () => {
 
-  const opacity = useRef( new Animated.Value(0) ).current;
-
-  const fadeIn = () => {
-
-    Animated.timing(
-      opacity,
-      {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }
-    ).start();
-  };
+  const { opacity, fadeIn, fadeOut } = useFade();
 
   return (
     <View style={{
@@ -33,13 +22,18 @@ export const FadeScreen = () => {
           borderColor: 'white',
           borderWidth: 10,
           marginBottom: 10,
-          opacity: opacity,
+          opacity,
         }}
       />
 
       <Button
         title="FadeIn"
         onPress={ fadeIn }
+      />
+
+      <Button
+        title="fadeOut"
+        onPress={ fadeOut }
       />
     </View>
   );
