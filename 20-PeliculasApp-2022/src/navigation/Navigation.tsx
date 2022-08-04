@@ -17,7 +17,6 @@ export const Navigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        headerStyle: { backgroundColor: 'white' },
       }}
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />

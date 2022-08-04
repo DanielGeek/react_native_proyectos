@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import currencyFormatter from 'currency-formatter';
 
 import { MovieFull } from '../interfaces/movieInterface';
@@ -56,7 +56,16 @@ export const MovieDetails = ({ movieFull, cast }: Props) => {
         <Text style={{ fontSize: 23, marginTop: 10, fontWeight: 'bold', marginHorizontal: 20 }}>
           Actores
         </Text>
-        <CastItem actor={ cast[0] } />
+
+        <FlatList
+          data={ cast }
+          keyExtractor={ (item) => item.id.toString() }
+          renderItem={ ({ item }) => <CastItem actor={ item }/>}
+          horizontal={ true }
+          showsHorizontalScrollIndicator={ false }
+          style={{ marginTop: 10, height: 70 }}
+        />
+
       </View>
     </>
   );
