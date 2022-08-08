@@ -8,9 +8,10 @@ import Carousel from 'react-native-snap-carousel';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 import { HorizontalSlider } from '../components/HorizontalSlider';
-import { GradineeBackgroun } from '../components/GradineeBackgroun';
+import { GradientBackgroun } from '../components/GradientBackgroun';
 import { getImageColors } from '../helpers/getColores';
 import { GradientContext } from '../context/GradientContext';
+import { useEffect } from 'react';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -29,6 +30,13 @@ export const HomeScreen = () => {
     setMainColors({ primary, secondary });
   };
 
+  useEffect(() => {
+    if( nowPlaying.length > 0 ) {
+      getPosterColors(0);
+    }
+  }, [ nowPlaying ]);
+  
+
   if ( isLoading ) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -38,7 +46,7 @@ export const HomeScreen = () => {
   }
 
   return (
-    <GradineeBackgroun>
+    <GradientBackgroun>
       <ScrollView>
         <View style={{ marginTop: top + 20 }}>
           <View style={{ height: 440 }}>
@@ -58,7 +66,7 @@ export const HomeScreen = () => {
           <HorizontalSlider title="Upcoming" movies={ upcoming } />
         </View>
       </ScrollView>
-    </GradineeBackgroun>
+    </GradientBackgroun>
   );
 };
 
