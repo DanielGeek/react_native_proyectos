@@ -13,3 +13,13 @@ https://github.com/jhen0409/react-native-debugger
 
 #repo de programa para conectar teléfono por usb y visualizarlo en la pc
 https://github.com/jhen0409/react-native-debugger/releases
+
+# install expo-cli
+`npm i -g expo-cli`
+
+# create project
+`npx create-expo-app my-app`
+
+# start project
+`cd my-app`
+`expo start`
