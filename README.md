@@ -23,3 +23,8 @@ https://github.com/jhen0409/react-native-debugger/releases
 # start project
 `cd my-app`
 `expo start`
+
+# Expo project can't be tracked by git inside github repository]
+https://stackoverflow.com/questions/67895044/expo-project-cant-be-tracked-by-git-inside-github-repository
+
+`Run rm -rf .git inside the expo folder.`
