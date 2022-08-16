@@ -2,7 +2,8 @@ import { View, Text, SafeAreaView, Image, TextInput, ScrollView } from 'react-na
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { AdjustmentsIcon, ChevronDownIcon, SearchIcon, UserIcon } from "react-native-heroicons/outline";
-import Categories from '../components/categories';
+import Categories from '../components/Categories';
+import FeatureRow from '../components/FeatureRow';
 
 const HomeScreen = () => {
 
@@ -16,7 +17,8 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView className="bg-white pt-5">
-      <View className="flex-row pb-3 items-center mx-4 space-x-2 px-4">
+      {/* Header */}
+      <View className="flex-row pb-3 items-center mx-4 space-x-2">
         <Image
           source={{
             uri: 'https://links.papareact.com/wru'
@@ -34,7 +36,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Search */}
-      <View className="flex-row items-center space-x-2 pb-2 mx-4 px-4">
+      <View className="flex-row items-center space-x-2 pb-2 mx-4">
         <View className="flex-row flex-1 space-x-2 bg-gray-200 p-3">
           <SearchIcon color="gray" size={20} />
           <TextInput
@@ -55,7 +57,27 @@ const HomeScreen = () => {
         {/* Categories */}
         <Categories />
 
-        {/* Featured Rows */}
+        {/* Featured */}
+        <FeatureRow
+          id="123"
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured"
+        />
+        {/* Tasty Discounts */}
+        <FeatureRow
+          id="1234"
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured"
+        />
+        {/* Offers near you */}
+        <FeatureRow
+          id="1235"
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured"
+        />
       </ScrollView>
     </SafeAreaView>
   )
