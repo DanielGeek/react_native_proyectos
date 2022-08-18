@@ -1,5 +1,5 @@
 export interface MenuItem {
   name: String;
   icon: String;
-  components: String;
+  component: String;
 }
