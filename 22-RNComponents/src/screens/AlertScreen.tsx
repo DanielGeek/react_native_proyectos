@@ -24,6 +24,17 @@ export const AlertScreen = () => {
     );
   };
 
+  const showPrompt = () => {
+
+    Alert.prompt(
+      'Está seguro?',
+      'Esta accion no se puede revertir',
+      ( valor: string ) => console.log('info: ', valor ),
+      'plain-text',
+      'Hola mundo'
+    );
+  };
+
   return (
     <View style={ styles.globalMargin }>
       <HeaderTitle title="Alerts" />
@@ -31,6 +42,11 @@ export const AlertScreen = () => {
       <Button
         title="Mostrar Alerta"
         onPress={ showAlert }
+      />
+
+      <Button
+        title="Mostrar Prompt"
+        onPress={ showPrompt }
       />
     </View>
   );
