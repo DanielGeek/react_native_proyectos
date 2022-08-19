@@ -47,7 +47,7 @@ export const AlertScreen = () => {
           type: 'secure-text',
           cancelable: false,
           defaultValue: 'test',
-          placeholder: 'placeholder'
+          placeholder: 'placeholder',
       }
     );
   };
