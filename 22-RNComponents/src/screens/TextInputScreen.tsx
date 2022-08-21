@@ -1,61 +1,72 @@
-import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { HeaderTitle } from '../components/HeaderTitle';
-import { styles } from '../theme/appTheme';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Text,
+} from 'react-native';
+import {CustomSwitch} from '../components/CustomSwitch';
+import {HeaderTitle} from '../components/HeaderTitle';
+import {useForm} from '../hooks/useForm';
+import {styles} from '../theme/appTheme';
 
 export const TextInputScreen = () => {
-
-  const [form, setForm] = useState({
+  const {form, onChange, isSubscribed} = useForm({
     name: '',
     email: '',
     phone: '',
+    isSubscribed: false,
   });
-
-  const onChange = ( value: string, field: string ) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-  };
 
   return (
     <KeyboardAvoidingView
-      behavior={ Platform.OS === "ios" ? "padding" : "height"}
-    >
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={ styles.globalMargin }>
+          <View style={styles.globalMargin}>
             <HeaderTitle title="TextInputs" />
 
             <TextInput
-              style={ stylesScreen.inputStyle }
+              style={stylesScreen.inputStyle}
               placeholder="Ingrese su nombre"
-              autoCorrect={ false }
+              autoCorrect={false}
               autoCapitalize="words"
-              onChangeText={ ( value ) => onChange( value, 'name')}
+              onChangeText={value => onChange(value, 'name')}
             />
             <TextInput
-              style={ stylesScreen.inputStyle }
+              style={stylesScreen.inputStyle}
               placeholder="Ingrese su email"
-              autoCorrect={ false }
+              autoCorrect={false}
               autoCapitalize="none"
-              onChangeText={ ( value ) => onChange( value, 'email')}
+              onChangeText={value => onChange(value, 'email')}
               keyboardType="email-address"
               keyboardAppearance="dark"
             />
 
-            <HeaderTitle title={ JSON.stringify( form, null, 3 )} />
-            <HeaderTitle title={ JSON.stringify( form, null, 3 )} />
+            <View style={stylesScreen.switchRow}>
+              <Text style={stylesScreen.switchText}>Suscribirse</Text>
+              <CustomSwitch
+                isOn={isSubscribed}
+                onChange={(value) => onChange(value, 'isSubscribed')}
+              />
+            </View>
+
+            <HeaderTitle title={JSON.stringify(form, null, 3)} />
+            <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
             <TextInput
-              style={ stylesScreen.inputStyle }
+              style={stylesScreen.inputStyle}
               placeholder="Ingrese su teléfono"
-              onChangeText={ ( value ) => onChange( value, 'phone')}
+              onChangeText={value => onChange(value, 'phone')}
               keyboardType="phone-pad"
             />
-            <View style={{ height: 100 }} />
+            <View style={{height: 100}} />
           </View>
-
         </TouchableWithoutFeedback>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -63,12 +74,21 @@ export const TextInputScreen = () => {
 };
 
 const stylesScreen = StyleSheet.create({
-    inputStyle: {
-      borderWidth: 1,
-      borderColor: 'rgba(0,0,0,0.3)',
-      height: 50,
-      paddingHorizontal: 10,
-      borderRadius: 10,
-      marginVertical: 10,
-    },
+  inputStyle: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.3)',
+    height: 50,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    marginVertical: 10,
+  },
+  switchRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  switchText: {
+    fontSize: 25,
+  },
 });
