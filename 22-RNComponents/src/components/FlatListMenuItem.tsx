@@ -1,6 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+
+import { useTheme } from '@react-navigation/native';
+
 import {MenuItem} from '../interfaces/appInterfaces';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/core';
@@ -12,6 +15,7 @@ interface Props {
 export const FlatListMenuItem = ({menuItem}: Props) => {
 
   const navigation = useNavigation();
+  // const { colors } = useTheme();
 
   return (
     <TouchableOpacity
