@@ -12,13 +12,13 @@ export type ThemeAction =
   export const lightTheme: ThemeState = {
     currentTheme: 'light',
     dark: false,
-    dividerColor: 'rgba(0,0,0,0.7)',
+    dividerColor: 'rgba(0,0,0, 0.6)',
     colors: {
       primary: '#084F6A',
       background: 'white',
-      card: 'green',
+      card: 'white',
       text: 'black',
-      border: 'orange',
+      border: 'black',
       notification: 'teal',
     },
   };
@@ -26,13 +26,13 @@ export type ThemeAction =
   export const darkTheme: ThemeState = {
     currentTheme: 'dark',
     dark: true,
-    dividerColor: 'rgba(0,0,0,0.7)',
+    dividerColor: 'rgba(255,255,255, 0.6)',
     colors: {
       primary: '#75CEDB',
       background: 'black',
-      card: 'green',
+      card: 'black',
       text: 'white',
-      border: 'orange',
+      border: 'black',
       notification: 'teal',
     },
   };
