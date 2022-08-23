@@ -6,7 +6,7 @@ import { Navigator } from './src/navigator/Navigator';
 const customTheme: Theme = {
   dark: true,
   colors: {
-    ...DarkTheme.colors,
+    ...DefaultTheme.colors,
     // primary: 'string',
     // background: 'black',
     // card: 'string',
