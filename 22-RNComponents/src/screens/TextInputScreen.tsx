@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {CustomSwitch} from '../components/CustomSwitch';
 import {HeaderTitle} from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import {useForm} from '../hooks/useForm';
 import {styles} from '../theme/appTheme';
 
@@ -24,6 +25,8 @@ export const TextInputScreen = () => {
     isSubscribed: false,
   });
 
+  const { theme: { colors, dividerColor }  } = useContext( ThemeContext );
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -33,20 +36,30 @@ export const TextInputScreen = () => {
             <HeaderTitle title="TextInputs" />
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                  ...stylesScreen.inputStyle,
+                  borderColor: colors.text,
+                  color: colors.text,
+              }}
               placeholder="Ingrese su nombre"
               autoCorrect={false}
               autoCapitalize="words"
               onChangeText={value => onChange(value, 'name')}
+              placeholderTextColor={ dividerColor }
             />
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
               placeholder="Ingrese su email"
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={value => onChange(value, 'email')}
               keyboardType="email-address"
               keyboardAppearance="dark"
+              placeholderTextColor={ dividerColor }
             />
 
             <View style={stylesScreen.switchRow}>
@@ -61,10 +74,15 @@ export const TextInputScreen = () => {
             <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
               placeholder="Ingrese su teléfono"
               onChangeText={value => onChange(value, 'phone')}
               keyboardType="phone-pad"
+              placeholderTextColor={ dividerColor }
             />
             <View style={{height: 100}} />
           </View>
@@ -77,7 +95,6 @@ export const TextInputScreen = () => {
 const stylesScreen = StyleSheet.create({
   inputStyle: {
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.3)',
     height: 50,
     paddingHorizontal: 10,
     borderRadius: 10,
