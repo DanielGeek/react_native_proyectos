@@ -11,7 +11,7 @@ export type RootStackParams = {
 
 const Stack = createStackNavigator<RootStackParams>();
 
-export const Navigator = () => {
+export const Tab1 = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -25,4 +25,4 @@ export const Navigator = () => {
       <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
     </Stack.Navigator>
   );
-}
+};
