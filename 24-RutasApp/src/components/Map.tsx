@@ -1,8 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import React, { useEffect } from 'react';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
-export const Map = () => {
+import Geolocation from '@react-native-community/geolocation';
+interface Props {
+  markers?: typeof Marker[];
+}
+
+export const Map = ({ markers }: Props) => {
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      info => console.log(info),
+      (err) => console.log({ err }),
+      {
+        enableHighAccuracy: true,
+      }
+    );
+  }, []);
+
   return (
     <>
     <MapView
