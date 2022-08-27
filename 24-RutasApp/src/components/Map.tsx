@@ -1,23 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect } from 'react';
+import React from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { useLocation } from '../hooks/useLocation';
+import { LoadingScreen } from '../pages/LoadingScreen';
 
-import Geolocation from '@react-native-community/geolocation';
+
 interface Props {
   markers?: typeof Marker[];
 }
 
 export const Map = ({ markers }: Props) => {
 
-  useEffect(() => {
-    Geolocation.getCurrentPosition(
-      info => console.log(info),
-      (err) => console.log({ err }),
-      {
-        enableHighAccuracy: true,
-      }
-    );
-  }, []);
+  const { hasLocation, initialPosition } = useLocation();
+
+  if ( !hasLocation ) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -26,8 +24,8 @@ export const Map = ({ markers }: Props) => {
         showsUserLocation
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: initialPosition.latitude,
+          longitude: initialPosition.longitud,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
