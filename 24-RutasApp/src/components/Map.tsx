@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { useLocation } from '../hooks/useLocation';
 import { LoadingScreen } from '../pages/LoadingScreen';
@@ -11,6 +11,8 @@ interface Props {
 }
 
 export const Map = ({ markers }: Props) => {
+
+  const [showPolyline, setShowPolyline] = useState(true);
 
   const { hasLocation,
           initialPosition,
@@ -71,11 +73,15 @@ export const Map = ({ markers }: Props) => {
         }}
         onTouchStart={ () => fallowing.current = false }
      >
-        <Polyline
-          coordinates={ routeLines }
-          strokeColor="black"
-          strokeWidth={ 3 }
-        />
+      {
+        showPolyline && (
+          <Polyline
+            coordinates={ routeLines }
+            strokeColor="black"
+            strokeWidth={ 3 }
+          />
+        )
+      }
       {/* <Marker
         image={ require('../assets/custom-marker.png')}
         coordinate={{
@@ -96,6 +102,15 @@ export const Map = ({ markers }: Props) => {
           right: 20,
         }}
      />
+     <Fab
+        iconName="brush-outline"
+        onPress={ () => setShowPolyline( !showPolyline )}
+        style={{
+          position: 'absolute',
+          bottom: 80,
+          right: 20,
+        }}
+     />
     </>
-  )
-}
+  );
+};
