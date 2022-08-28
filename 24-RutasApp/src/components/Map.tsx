@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useRef, useEffect } from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { useLocation } from '../hooks/useLocation';
 import { LoadingScreen } from '../pages/LoadingScreen';
 import { Fab } from './Fab';
@@ -17,7 +17,8 @@ export const Map = ({ markers }: Props) => {
           getCurrentLocation,
           followUserLocation,
           userLocation,
-          stopFollowUserLocation } = useLocation();
+          stopFollowUserLocation,
+          routeLines } = useLocation();
 
   const mapViewRef = useRef<MapView>();
   const fallowing = useRef<boolean>(true);
@@ -70,6 +71,11 @@ export const Map = ({ markers }: Props) => {
         }}
         onTouchStart={ () => fallowing.current = false }
      >
+        <Polyline
+          coordinates={ routeLines }
+          strokeColor="black"
+          strokeWidth={ 3 }
+        />
       {/* <Marker
         image={ require('../assets/custom-marker.png')}
         coordinate={{
