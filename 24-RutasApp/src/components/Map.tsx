@@ -12,18 +12,27 @@ interface Props {
 
 export const Map = ({ markers }: Props) => {
 
-  const { hasLocation, initialPosition, getCurrentLocation, followUserLocation, userLocation } = useLocation();
+  const { hasLocation,
+          initialPosition,
+          getCurrentLocation,
+          followUserLocation,
+          userLocation,
+          stopFollowUserLocation } = useLocation();
 
   const mapViewRef = useRef<MapView>();
+  const fallowing = useRef<boolean>(true);
 
   useEffect(() => {
     followUserLocation();
     return () => {
-      // TODO: cancelar el seguimiento
+      stopFollowUserLocation();
     }
   }, []);
 
   useEffect(() => {
+
+    if ( !fallowing.current ) return;
+
     const { latitude, longitude } = userLocation;
 
     mapViewRef.current?.animateCamera({
@@ -34,6 +43,8 @@ export const Map = ({ markers }: Props) => {
   const centerPosition = async() => {
 
     const { latitude, longitude } = await getCurrentLocation();
+
+    fallowing.current = true;
 
     mapViewRef.current?.animateCamera({
       center: { latitude, longitude },
@@ -57,6 +68,7 @@ export const Map = ({ markers }: Props) => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
+        onTouchStart={ () => fallowing.current = false }
      >
       {/* <Marker
         image={ require('../assets/custom-marker.png')}
