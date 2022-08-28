@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useLocation } from '../hooks/useLocation';
 import { LoadingScreen } from '../pages/LoadingScreen';
@@ -12,9 +12,24 @@ interface Props {
 
 export const Map = ({ markers }: Props) => {
 
-  const { hasLocation, initialPosition, getCurrentLocation } = useLocation();
+  const { hasLocation, initialPosition, getCurrentLocation, followUserLocation, userLocation } = useLocation();
 
   const mapViewRef = useRef<MapView>();
+
+  useEffect(() => {
+    followUserLocation();
+    return () => {
+      // TODO: cancelar el seguimiento
+    }
+  }, []);
+
+  useEffect(() => {
+    const { latitude, longitude } = userLocation;
+
+    mapViewRef.current?.animateCamera({
+      center: { latitude, longitude },
+    });
+  }, [userLocation]);
 
   const centerPosition = async() => {
 
