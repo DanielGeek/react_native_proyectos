@@ -42,6 +42,10 @@ export const AuthProvider = ({ children }: any) => {
 
     } catch (error) {
       console.log(error.response.data.msg);
+      dispatch({
+        type: 'addError',
+        payload: error.response.data.msg || 'Información incorrecta',
+      });
     }
   };
 
@@ -54,7 +58,7 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   const removeError = () => {
-
+    dispatch({ type: 'removeError' });
   };
 
 
