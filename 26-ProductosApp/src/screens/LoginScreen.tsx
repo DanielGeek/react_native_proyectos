@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Background } from '../components/Background';
 import { WhiteLogo } from '../components/WhiteLogo';
 import { useForm } from '../hooks/useForm';
 import { loginStyles } from '../theme/loginTheme';
 import { StackScreenProps } from '@react-navigation/stack'
+import { AuthContext } from '../context/AuthContext';
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const LoginScreen = ({ navigation }: Props) => {
+
+  const { signIn } = useContext( AuthContext );
 
   const { email, password, onChange } = useForm({
     email: '',
@@ -18,6 +21,7 @@ export const LoginScreen = ({ navigation }: Props) => {
   const onLogin = () => {
     console.log({email, password});
     Keyboard.dismiss();
+    signIn({ correo: email, password });
   };
 
   return (
@@ -49,7 +53,7 @@ export const LoginScreen = ({ navigation }: Props) => {
               ( Platform.OS === 'ios' ) && loginStyles.inputFieldIOS,
             ]}
             selectionColor="white"
-            onChange={ (value ) => onChange(value, 'email')}
+            onChangeText={ (value ) => onChange(value, 'email')}
             value={ email }
             onSubmitEditing={ onLogin }
             autoCapitalize="none"
@@ -68,7 +72,7 @@ export const LoginScreen = ({ navigation }: Props) => {
               ( Platform.OS === 'ios' ) && loginStyles.inputFieldIOS,
             ]}
             selectionColor="white"
-            onChange={ (value ) => onChange(value, 'password')}
+            onChangeText={ (value ) => onChange(value, 'password')}
             value={ password }
             onSubmitEditing={ onLogin }
             autoCapitalize="none"
