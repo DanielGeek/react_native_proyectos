@@ -6,7 +6,7 @@ import { Background } from '../components/Background';
 import { WhiteLogo } from '../components/WhiteLogo';
 import { useForm } from '../hooks/useForm';
 import { loginStyles } from '../theme/loginTheme';
-import { StackScreenProps } from '@react-navigation/stack'
+import { StackScreenProps } from '@react-navigation/stack';
 import { AuthContext } from '../context/AuthContext';
 
 interface Props extends StackScreenProps<any, any> {}

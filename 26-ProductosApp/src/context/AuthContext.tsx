@@ -1,6 +1,9 @@
-import React, { useReducer } from 'react';
-import { createContext } from 'react';
+/* eslint-disable curly */
+import React, { createContext, useReducer, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import cafeApi from '../api/cafeApi';
+
 import { LoginData, LoginResponse, Usuario } from '../interfaces/appInterfaces';
 import { authReducer, AuthState } from './authReducer';
 
@@ -28,6 +31,18 @@ export const AuthProvider = ({ children }: any) => {
 
   const [state, dispatch] = useReducer( authReducer, authInicialState);
 
+  useEffect(() => {
+
+    checkToken();
+
+  }, []);
+
+  const checkToken = async() => {
+    const token = await AsyncStorage.getItem('token');
+
+    if ( !token ) return dispatch({ type: 'notAuthenticated' });
+  };
+
   const signIn = async({ correo, password }: LoginData ) => {
     try {
 
@@ -39,6 +54,8 @@ export const AuthProvider = ({ children }: any) => {
           user: data.usuario,
         },
       });
+
+      await AsyncStorage.setItem('token', data.token);
 
     } catch (error) {
       console.log(error.response.data.msg);
