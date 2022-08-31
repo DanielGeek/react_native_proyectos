@@ -16,7 +16,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
   const { id = '', name = '' } = route.params;
 
   const { categories } = useCategories();
-  const { loadProductById } = useContext( ProductsContext );
+  const { loadProductById, addProduct, updateProduct } = useContext( ProductsContext );
 
   const { _id, categoriaId, nombre, img, form, onChange, setFormValue } = useForm({
     _id: id,
@@ -27,9 +27,9 @@ export const ProductScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: ( name ) ? name : 'Nuevo producto',
+      title: ( nombre ) ? nombre : 'Sin nombre del producto',
     });
-  }, []);
+  }, [nombre]);
 
   useEffect(() => {
     loadProduct();
@@ -44,6 +44,16 @@ export const ProductScreen = ({ navigation, route }: Props) => {
       img: product.img || '',
       nombre,
     });
+  };
+
+  const saveOrUpdate = () => {
+      if (id.length > 0) {
+        updateProduct( categoriaId, nombre, id );
+
+      } else {
+        const tempCategoriaId = categoriaId || categories[0]._id;
+        addProduct( tempCategoriaId, nombre );
+      }
   };
 
   return (
@@ -75,25 +85,29 @@ export const ProductScreen = ({ navigation, route }: Props) => {
 
         <Button
             title="Guardar"
-            onPress={() => {}}
+            onPress={saveOrUpdate}
             color="#5856D6"
         />
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-          <Button
-              title="Cámara"
-              onPress={() => {}}
-              color="#5856D6"
-          />
+        {
+          (id.length > 0 ) && (
+          <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+            <Button
+                title="Cámara"
+                onPress={() => {}}
+                color="#5856D6"
+            />
 
-          <View style={{ width: 10 }} />
+            <View style={{ width: 10 }} />
 
-          <Button
-              title="Galería"
-              onPress={() => {}}
-              color="#5856D6"
-          />
-        </View>
+            <Button
+                title="Galería"
+                onPress={() => {}}
+                color="#5856D6"
+            />
+          </View>
+          )
+        }
 
         {
           (img.length > 0) && (
