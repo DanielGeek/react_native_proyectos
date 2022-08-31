@@ -45,7 +45,8 @@ export const ProductsProvider = ({ children }: any ) => {
 
   const loadProductById = async( id: string ) => {
 
-    throw new Error('Not implemented');
+    const resp = await cafeApi.get<Producto>(`productos/${ id }`);
+    return resp.data;
 
   };
 
