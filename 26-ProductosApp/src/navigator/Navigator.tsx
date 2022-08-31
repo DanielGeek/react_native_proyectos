@@ -6,6 +6,7 @@ import { RegisterScreen } from '../screens/RegisterScreen';
 import { ProtectedScreen } from '../screens/ProtectedScreen';
 import { AuthContext } from '../context/AuthContext';
 import { LoadingScreen } from '../screens/LoadingScreen';
+import { ProductsNavigator } from './ProductsNavigator';
 
 const Stack = createStackNavigator();
 
@@ -33,7 +34,10 @@ export const Navigator = () => {
             </>
           )
           : (
-            <Stack.Screen name="ProtectedScreen" component={ProtectedScreen} />
+            <>
+              <Stack.Screen name="ProductsNavigator" component={ProductsNavigator} />
+              <Stack.Screen name="ProtectedScreen" component={ProtectedScreen} />
+            </>
           )
       }
     </Stack.Navigator>
