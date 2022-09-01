@@ -87,7 +87,6 @@ export const ProductsProvider = ({ children }: any ) => {
       console.log(JSON.stringify(resp.data, null, 2));
 
     } catch (error) {
-      console.log('error!!!!!!!!!!!');
       console.log(JSON.stringify(error.response, null, 2));
     }
 
